@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title data-i18n="contatoTituloPagina">
+        Contato - MBLF Events
+    </title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="imagem/LOGO2.png"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body class="d-flex flex-column min-vh-100">
+
+
+<!-- ======================================================
+     NAVBAR
+======================================================= -->
+
+<nav
+    class="navbar navbar-expand-lg navbar-dark
+           navbar-mblf shadow-sm py-2 sticky-top"
+>
+
+    <div class="container">
+
+        <a
+            href="index.html"
+            class="navbar-brand
+                   d-flex
+                   align-items-center
+                   gap-2
+                   fw-bold"
+        >
+
+            <img
+                src="imagem/LOGO3.png"
+                class="brand-logo"
+                alt="MBLF Events"
+            >
+
+            <span class="fs-4">
+                MBLF Events
+            </span>
+
+        </a>
+
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+            aria-controls="navbarContent"
+            aria-expanded="false"
+            aria-label="Abrir menu"
+            data-i18n-aria-label="ariaAbrirMenu"
+        >
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbarContent"
+        >
+
+            <ul
+                class="navbar-nav
+                       me-auto
+                       mb-2
+                       mb-lg-0
+                       ms-lg-4"
+            >
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="explorar.html"
+                    >
+
+                        <i class="bi bi-compass me-1"></i>
+
+                        <span data-i18n="navExplorar">
+                            Explorar Eventos
+                        </span>
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="recursos.html"
+                    >
+
+                        <span data-i18n="navRecursos">
+                            Recursos
+                        </span>
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="sobre.html"
+                    >
+
+                        <span data-i18n="navSobre">
+                            Sobre
+                        </span>
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link active fw-bold"
+                        href="contato.html"
+                    >
+
+                        <span data-i18n="navContato">
+                            Contato
+                        </span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+
+            <div
+                class="d-flex
+                       align-items-center
+                       flex-wrap
+                       gap-2"
+            >
+
+                <!-- TEMA -->
+
+                <button
+                    class="btn
+                           btn-outline-light
+                           btn-sm"
+                    onclick="alternarTema()"
+                    type="button"
+                    title="Alternar tema"
+                    data-i18n-title="temaAlternar"
+                >
+
+                    <i
+                        id="icone-tema"
+                        class="bi bi-moon-stars-fill"
+                    ></i>
+
+                </button>
+
+
+                <!-- IDIOMA -->
+
+                <div class="dropdown">
+
+    <button
+        class="btn
+               btn-sm
+               btn-outline-light
+               dropdown-toggle
+               d-flex
+               align-items-center
+               gap-1"
+        type="button"
+        id="dropdownIdioma"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        aria-label="Selecionar idioma"
+        data-i18n-aria-label="idiomaSelecionar"
+    >
+
+        <img
+            id="bandeira-atual"
+            src="https://flagcdn.com/24x18/br.png"
+            alt="Português"
+            width="20"
+            height="15"
+            class="rounded-1"
+        >
+
+    </button>
+
+
+    <ul
+        class="dropdown-menu
+               dropdown-menu-end
+               shadow-sm"
+        aria-labelledby="dropdownIdioma"
+        style="min-width: 90px;"
+    >
+
+        <li>
+
+            <button
+                class="dropdown-item
+                       d-flex
+                       align-items-center
+                       gap-2
+                       py-1"
+                type="button"
+                onclick="selecionarIdioma('pt')"
+            >
+
+                <img
+                    src="https://flagcdn.com/24x18/br.png"
+                    alt="Português"
+                    width="20"
+                    height="15"
+                >
+
+                <span class="small">
+                    PT
+                </span>
+
+            </button>
+
+        </li>
+
+
+        <li>
+
+            <button
+                class="dropdown-item
+                       d-flex
+                       align-items-center
+                       gap-2
+                       py-1"
+                type="button"
+                onclick="selecionarIdioma('en')"
+            >
+
+                <img
+                    src="https://flagcdn.com/24x18/us.png"
+                    alt="English"
+                    width="20"
+                    height="15"
+                >
+
+                <span class="small">
+                    EN
+                </span>
+
+            </button>
+
+        </li>
+
+
+        <li>
+
+            <button
+                class="dropdown-item
+                       d-flex
+                       align-items-center
+                       gap-2
+                       py-1"
+                type="button"
+                onclick="selecionarIdioma('es')"
+            >
+
+                <img
+                    src="https://flagcdn.com/24x18/es.png"
+                    alt="Español"
+                    width="20"
+                    height="15"
+                >
+
+                <span class="small">
+                    ES
+                </span>
+
+            </button>
+
+        </li>
+
+    </ul>
+
+</div>
+
+
+                <!-- VISITANTE -->
+
+                <div
+                    id="areaVisitante"
+                    class="d-flex gap-2"
+                >
+
+                    <a
+                        href="login.html"
+                        class="btn
+                               btn-outline-light
+                               btn-sm
+                               px-3
+                               fw-semibold"
+                        data-i18n="navLogar"
+                    >
+                        Entrar
+                    </a>
+
+
+                    <a
+                        href="cadastro.html"
+                        class="btn
+                               btn-light
+                               btn-sm
+                               px-3
+                               text-primary
+                               fw-semibold"
+                        data-i18n="navCadastrar"
+                    >
+                        Cadastrar-se
+                    </a>
+
+                </div>
+
+
+                <!-- USUÁRIO LOGADO -->
+
+                <div
+                    id="areaLogada"
+                    class="dropdown d-none"
+                >
+
+                    <button
+                        class="btn
+                               btn-outline-light
+                               btn-sm
+                               dropdown-toggle
+                               d-flex
+                               align-items-center
+                               gap-2"
+                        data-bs-toggle="dropdown"
+                        type="button"
+                    >
+
+                        <i class="bi bi-person-circle fs-5"></i>
+
+                        <span
+                            id="nomeUsuarioPublico"
+                            class="fw-semibold"
+                        >
+                            Minha Conta
+                        </span>
+
+                    </button>
+
+
+                    <ul
+                        class="dropdown-menu
+                               dropdown-menu-end
+                               shadow"
+                    >
+
+                        <li>
+
+                            <h6
+                                class="dropdown-header"
+                                id="perfilUsuarioPublico"
+                                data-i18n="perfilUsuario"
+                            >
+                                Usuário
+                            </h6>
+
+                        </li>
+
+
+                        <li>
+
+                            <button
+                                class="dropdown-item"
+                                type="button"
+                                onclick="irParaPainel()"
+                            >
+
+                                <i class="bi bi-grid me-2"></i>
+
+                                <span data-i18n="navMeuPainel">
+                                    Meu Painel
+                                </span>
+
+                            </button>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                href="explorar.html"
+                                class="dropdown-item"
+                            >
+
+                                <i class="bi bi-compass me-2"></i>
+
+                                <span data-i18n="navExplorar">
+                                    Explorar Eventos
+                                </span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+
+                        <li>
+
+                            <button
+                                class="dropdown-item text-danger"
+                                type="button"
+                                onclick="sairPaginaPublica()"
+                            >
+
+                                <i class="bi bi-box-arrow-right me-2"></i>
+
+                                <span data-i18n="navSair">
+                                    Sair
+                                </span>
+
+                            </button>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ======================================================
+     HERO
+======================================================= -->
+
+<header class="py-5 text-center">
+
+    <div class="container">
+
+        <span
+            class="badge
+                   bg-primary-subtle
+                   text-primary
+                   border
+                   rounded-pill
+                   px-3
+                   py-2
+                   mb-3"
+        >
+
+            <i class="bi bi-chat-dots me-1"></i>
+
+            <span data-i18n="contatoBadge">
+                Suporte
+            </span>
+
+        </span>
+
+
+        <h1
+            class="display-5
+                   fw-bold
+                   text-main-theme"
+            data-i18n="contatoTitulo"
+        >
+            Fale Conosco
+        </h1>
+
+
+        <p
+            class="lead
+                   text-muted-theme
+                   mx-auto"
+            style="max-width: 760px;"
+            data-i18n="contatoSubtitulo"
+        >
+            Encontrou algum problema?
+            Tem uma sugestão, dúvida ou comentário?
+            Envie uma mensagem para a equipe.
+        </p>
+
+    </div>
+
+</header>
+
+
+
+<!-- ======================================================
+     CONTEÚDO
+======================================================= -->
+
+<section class="py-4 mb-5">
+
+    <div class="container">
+
+        <div
+            class="row
+                   g-4
+                   justify-content-center"
+        >
+
+
+            <!-- ==============================================
+                 INFORMAÇÕES
+            =============================================== -->
+
+            <div class="col-12 col-lg-4">
+
+                <div
+                    class="card
+                           card-custom
+                           h-100
+                           p-4
+                           border-0
+                           shadow-sm"
+                >
+
+                    <h5
+                        class="fw-bold
+                               text-main-theme
+                               mb-4"
+                    >
+
+                        <i
+                            class="bi bi-headset
+                                   text-primary
+                                   me-2"
+                        ></i>
+
+                        <span data-i18n="contatoCanaisTitulo">
+                            Canais de contato
+                        </span>
+
+                    </h5>
+
+
+                    <!-- E-MAIL -->
+
+                    <div
+                        class="d-flex
+                               gap-3
+                               mb-4"
+                    >
+
+                        <i
+                            class="bi bi-envelope
+                                   fs-3
+                                   text-primary"
+                        ></i>
+
+
+                        <div>
+
+                            <h6
+                                class="fw-bold
+                                       text-main-theme
+                                       mb-1"
+                                data-i18n="contatoEmailTitulo"
+                            >
+                                E-mail
+                            </h6>
+
+
+                            <a
+                                href="mailto:mblfcontato@gmail.com"
+                                class="text-muted-theme
+                                       small
+                                       text-decoration-none"
+                                id="emailContatoTexto"
+                            >
+                                mblfcontato@gmail.com
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUGESTÕES -->
+
+                    <div
+                        class="d-flex
+                               gap-3
+                               mb-4"
+                    >
+
+                        <i
+                            class="bi bi-chat-heart
+                                   fs-3
+                                   text-primary"
+                        ></i>
+
+
+                        <div>
+
+                            <h6
+                                class="fw-bold
+                                       text-main-theme
+                                       mb-1"
+                                data-i18n="contatoSugestoesTitulo"
+                            >
+                                Sugestões
+                            </h6>
+
+
+                            <p
+                                class="text-muted-theme
+                                       small
+                                       mb-0"
+                                data-i18n="contatoSugestoesTexto"
+                            >
+                                Ideias, comentários e sugestões
+                                para melhorar a plataforma
+                                são bem-vindos.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRIVACIDADE -->
+
+                    <div
+                        class="d-flex
+                               gap-3"
+                    >
+
+                        <i
+                            class="bi bi-shield-check
+                                   fs-3
+                                   text-primary"
+                        ></i>
+
+
+                        <div>
+
+                            <h6
+                                class="fw-bold
+                                       text-main-theme
+                                       mb-1"
+                                data-i18n="contatoPrivacidadeTitulo"
+                            >
+                                Privacidade
+                            </h6>
+
+
+                            <p
+                                class="text-muted-theme
+                                       small
+                                       mb-0"
+                                data-i18n="contatoPrivacidadeTexto"
+                            >
+                                Utilize o formulário apenas
+                                para informações necessárias
+                                ao atendimento.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+                        <!-- ==============================================
+                 FORMULÁRIO
+            =============================================== -->
+
+            <div class="col-12 col-lg-8">
+
+                <div
+                    class="card
+                           card-custom
+                           p-4
+                           p-md-5
+                           border-0
+                           shadow-sm"
+                >
+
+                    <div
+                        id="alertContato"
+                        class="alert d-none"
+                        role="alert"
+                    ></div>
+
+
+                    <h4
+                        class="fw-bold
+                               text-main-theme
+                               mb-1"
+                        data-i18n="contatoFormTitulo"
+                    >
+                        Envie uma mensagem
+                    </h4>
+
+
+                    <p
+                        class="text-muted-theme
+                               small
+                               mb-4"
+                        data-i18n="contatoFormTexto"
+                    >
+                        Preencha os campos abaixo.
+                        A mensagem será encaminhada
+                        para a equipe do MBLF Events.
+                    </p>
+
+
+                    <form
+                        id="formContato"
+                        novalidate
+                    >
+
+                        <div class="row g-3">
+
+
+                            <!-- NOME -->
+
+                            <div class="col-md-6">
+
+                                <label
+                                    for="contatoNome"
+                                    class="form-label fw-semibold"
+                                    data-i18n="contatoNome"
+                                >
+                                    Nome *
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="contatoNome"
+                                    maxlength="100"
+                                    autocomplete="name"
+                                    placeholder="Seu nome"
+                                    data-i18n-placeholder="contatoNomePlaceholder"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- EMAIL -->
+
+                            <div class="col-md-6">
+
+                                <label
+                                    for="contatoEmail"
+                                    class="form-label fw-semibold"
+                                    data-i18n="contatoEmail"
+                                >
+                                    Seu e-mail *
+                                </label>
+
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="contatoEmail"
+                                    maxlength="150"
+                                    autocomplete="email"
+                                    placeholder="seuemail@email.com"
+                                    data-i18n-placeholder="contatoEmailPlaceholder"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- ASSUNTO -->
+
+                            <div class="col-12">
+
+                                <label
+                                    for="contatoAssunto"
+                                    class="form-label fw-semibold"
+                                    data-i18n="contatoAssunto"
+                                >
+                                    Assunto *
+                                </label>
+
+
+                                <select
+                                    class="form-select"
+                                    id="contatoAssunto"
+                                    required
+                                >
+
+                                    <option
+                                        value=""
+                                        data-i18n="contatoAssuntoSelecione"
+                                    >
+                                        Selecione
+                                    </option>
+
+                                    <option
+                                        value="Dúvida"
+                                        data-i18n="contatoAssuntoDuvida"
+                                    >
+                                        Dúvida
+                                    </option>
+
+                                    <option
+                                        value="Problema"
+                                        data-i18n="contatoAssuntoProblema"
+                                    >
+                                        Relatar problema
+                                    </option>
+
+                                    <option
+                                        value="Sugestão"
+                                        data-i18n="contatoAssuntoSugestao"
+                                    >
+                                        Sugestão
+                                    </option>
+
+                                    <option
+                                        value="Comentário"
+                                        data-i18n="contatoAssuntoComentario"
+                                    >
+                                        Comentário
+                                    </option>
+
+                                    <option
+                                        value="Outro"
+                                        data-i18n="contatoAssuntoOutro"
+                                    >
+                                        Outro
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- MENSAGEM -->
+
+                            <div class="col-12">
+
+                                <div
+                                    class="d-flex
+                                           justify-content-between
+                                           align-items-center"
+                                >
+
+                                    <label
+                                        for="contatoMensagem"
+                                        class="form-label fw-semibold"
+                                        data-i18n="contatoMensagem"
+                                    >
+                                        Mensagem *
+                                    </label>
+
+
+                                    <small
+                                        class="text-muted-theme"
+                                        id="contadorMensagem"
+                                    >
+                                        0 / 1500
+                                    </small>
+
+                                </div>
+
+
+                                <textarea
+                                    class="form-control"
+                                    id="contatoMensagem"
+                                    rows="6"
+                                    maxlength="1500"
+                                    placeholder="Conte para nós como podemos ajudar..."
+                                    data-i18n-placeholder="contatoMensagemPlaceholder"
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <!-- BOTÃO -->
+
+                            <div class="col-12">
+
+                                <button
+                                    type="submit"
+                                    class="btn
+                                           btn-mblf-primary
+                                           px-4
+                                           fw-semibold"
+                                    id="btnEnviarContato"
+                                >
+
+                                    <i class="bi bi-send me-1"></i>
+
+                                    <span data-i18n="contatoEnviar">
+                                        Enviar Mensagem
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+            <!-- ======================================================
+     FOOTER
+======================================================= -->
+
+<footer
+    class="mt-auto
+           py-5
+           border-top
+           footer-custom"
+>
+
+    <div class="container">
+
+        <div class="row g-4">
+
+
+            <!-- MBLF EVENTS -->
+
+            <div class="col-12 col-md-4">
+
+                <div
+                    class="d-flex
+                           align-items-center
+                           gap-2
+                           mb-3"
+                >
+
+                    <img
+                        src="imagem/LOGO2.png"
+                        alt="MBLF Events"
+                        width="30"
+                    >
+
+                    <span
+                        class="fw-bold
+                               fs-5
+                               text-main-theme"
+                    >
+                        MBLF Events
+                    </span>
+
+                </div>
+
+
+                <p
+                    class="text-muted-theme small"
+                    data-i18n="footerDescricao"
+                >
+                    Plataforma para divulgação,
+                    participação e gerenciamento
+                    de eventos.
+                </p>
+
+            </div>
+
+
+            <!-- LINKS ÚTEIS -->
+
+            <div class="col-6 col-md-3">
+
+                <h6
+                    class="fw-bold
+                           text-main-theme"
+                    data-i18n="footerLinksUteis"
+                >
+                    Links Úteis
+                </h6>
+
+
+                <ul
+                    class="list-unstyled
+                           small
+                           d-flex
+                           flex-column
+                           gap-2"
+                >
+
+                    <li>
+
+                        <a
+                            href="explorar.html"
+                            class="text-muted-theme
+                                   text-decoration-none"
+                            data-i18n="navExplorar"
+                        >
+                            Explorar Eventos
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="login.html"
+                            class="text-muted-theme
+                                   text-decoration-none"
+                            data-i18n="navLogar"
+                        >
+                            Entrar
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="cadastro.html"
+                            class="text-muted-theme
+                                   text-decoration-none"
+                            data-i18n="navCadastrar"
+                        >
+                            Cadastrar-se
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- SUPORTE -->
+
+            <div class="col-6 col-md-3">
+
+                <h6
+                    class="fw-bold
+                           text-main-theme"
+                    data-i18n="footerSuporte"
+                >
+                    Suporte
+                </h6>
+
+
+                <ul
+                    class="list-unstyled
+                           small
+                           d-flex
+                           flex-column
+                           gap-2"
+                >
+
+                    <li>
+
+                        <a
+                            href="#"
+                            class="text-muted-theme
+                                   text-decoration-none"
+                            data-i18n="footerPrivacidade"
+                        >
+                            Política de Privacidade
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="#"
+                            class="text-muted-theme
+                                   text-decoration-none"
+                            data-i18n="footerTermos"
+                        >
+                            Termos de Uso
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- REDES SOCIAIS -->
+
+            <div class="col-12 col-md-2">
+
+                <h6
+                    class="fw-bold
+                           text-main-theme"
+                    data-i18n="footerRedesSociais"
+                >
+                    Redes Sociais
+                </h6>
+
+
+                <div
+                    class="d-flex
+                           align-items-center
+                           gap-3
+                           fs-5"
+                >
+
+                    <a
+                        href="#"
+                        class="text-muted-theme
+                               text-decoration-none"
+                        aria-label="Instagram"
+                    >
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="text-muted-theme
+                               text-decoration-none"
+                        aria-label="LinkedIn"
+                    >
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="text-muted-theme
+                               text-decoration-none"
+                        aria-label="GitHub"
+                    >
+                        <i class="bi bi-github"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <hr class="my-4 opacity-10">
+
+
+        <div
+            class="text-center
+                   text-muted-theme
+                   small"
+            data-i18n="footerDireitos"
+        >
+            © 2026 MBLF Events. Todos os direitos reservados.
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ======================================================
+     SCRIPTS
+======================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/i18n.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/paginasPublicas.js"></script>
+
+<script src="js/contato.js"></script>
+
+</body>
+
+</html>

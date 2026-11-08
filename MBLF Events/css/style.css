@@ -1,0 +1,754 @@
+:root {
+    --primary-purple: #6a55ea;
+    --primary-cyan: #00b894;
+    --bg-gradient: linear-gradient(135deg, #6a55ea 0%, #00b894 100%);
+    
+    /* Cores Modo Claro */
+    --bg-body: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --input-bg: #f1f5f9;
+    --input-border: #cbd5e1;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
+    /* Cores Modo Escuro */
+    --bg-body: #0f172a;
+    --text-main: #f8fafc;
+    --text-muted: #cbd5e1; /* Força o texto secundário a ficar claro e legível */
+    --card-bg: #1e293b;
+    --input-bg: #334155;
+    --input-border: #475569;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Ajuste para selects no tema escuro */
+[data-theme="dark"] .form-select.form-control-custom {
+    background-color: var(--input-bg) !important;
+    color: var(--text-main) !important;
+    border-color: var(--input-border) !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23cbd5e1'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Força os elementos de texto do cartão a obedecerem às variáveis de tema */
+.card-custom {
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.text-main-theme {
+    color: var(--text-main) !important;
+}
+
+.text-muted-theme {
+    color: var(--text-muted) !important;
+}
+
+/* Entradas de Texto (Inputs) no Tema Escuro */
+.form-control-custom {
+    background-color: var(--input-bg) !important;
+    color: var(--text-main) !important;
+    border-color: var(--input-border) !important;
+}
+
+.form-control-custom::placeholder {
+    color: #94a3b8 !important;
+}
+
+.input-group-text-custom {
+    background-color: var(--input-bg) !important;
+    color: var(--text-muted) !important;
+    border-color: var(--input-border) !important;
+}
+
+.navbar-mblf {
+    background: var(--bg-gradient) !important;
+}
+
+.brand-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.login-logo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+}
+
+.btn-mblf-primary {
+    background: var(--bg-gradient);
+    border: none;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-mblf-primary:hover {
+    opacity: 0.92;
+    color: #ffffff;
+}
+
+/* Estilos específicos da Landing Page */
+.hero-section {
+    padding: 80px 0;
+}
+
+.feature-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--bg-gradient);
+    color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--input-border);
+}
+
+/* Efeito suave ao passar o mouse em links */
+.link-hover {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.link-hover:hover {
+    transform: translateX(3px);
+    color: var(--bs-primary) !important;
+}
+
+/* Rolagem suave na página ao clicar no menu */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Estilo para footer nos temas claro/escuro */
+.footer-custom {
+    background-color: var(--card-bg);
+    border-color: var(--input-border) !important;
+}
+
+/* ==========================================================
+   AJUSTES GERAIS DE TEMA
+   ========================================================== */
+
+.bg-card-theme {
+    background-color: var(--card-bg) !important;
+    color: var(--text-main) !important;
+}
+
+.border,
+.border-top,
+.border-bottom,
+.border-start,
+.border-end {
+    border-color: var(--input-border) !important;
+}
+
+
+/* ==========================================================
+   FORMULÁRIOS
+   ========================================================== */
+
+.form-control,
+.form-select {
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    border-color: var(--input-border);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 0 0.2rem rgba(106, 85, 234, 0.18);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.75;
+}
+
+.form-label,
+.form-text {
+    color: var(--text-main);
+}
+
+.form-text {
+    color: var(--text-muted) !important;
+}
+
+.input-group-text {
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    border-color: var(--input-border);
+}
+
+
+/* ==========================================================
+   DROPDOWNS
+   Corrige principalmente as notificações
+   ========================================================== */
+
+.dropdown-menu {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border-color: var(--input-border);
+}
+
+.dropdown-header {
+    color: var(--text-muted);
+}
+
+.dropdown-item {
+    color: var(--text-main);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--input-bg);
+    color: var(--text-main);
+}
+
+.dropdown-divider {
+    border-color: var(--input-border);
+}
+
+
+/* ==========================================================
+   NOTIFICAÇÕES
+   ========================================================== */
+
+#lista-notificacoes {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+}
+
+#lista-notificacoes > div,
+#lista-notificacoes .notification-item,
+#lista-notificacoes .notificacao-item {
+    color: var(--text-main);
+    border-color: var(--input-border) !important;
+}
+
+#lista-notificacoes strong,
+#lista-notificacoes h5,
+#lista-notificacoes h6 {
+    color: var(--text-main) !important;
+}
+
+#lista-notificacoes p,
+#lista-notificacoes small,
+#lista-notificacoes .small {
+    color: var(--text-muted);
+}
+
+
+/* ==========================================================
+   MODAIS
+   ========================================================== */
+
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border-color: var(--input-border);
+}
+
+.modal-header,
+.modal-footer {
+    border-color: var(--input-border);
+}
+
+.modal-title {
+    color: var(--text-main);
+}
+
+[data-theme="dark"] .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+
+/* ==========================================================
+   TABELAS
+   ========================================================== */
+
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--text-main);
+    --bs-table-border-color: var(--input-border);
+
+    color: var(--text-main);
+}
+
+.table > :not(caption) > * > * {
+    background-color: transparent;
+    color: var(--text-main);
+    border-color: var(--input-border);
+}
+
+.table thead th {
+    color: var(--text-main);
+}
+
+.table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: var(--input-bg);
+    color: var(--text-main);
+}
+
+
+/* ==========================================================
+   NAV PILLS / ABAS
+   ========================================================== */
+
+.custom-tabs .nav-link {
+    color: var(--text-muted);
+}
+
+.custom-tabs .nav-link:hover {
+    color: var(--primary-purple);
+    background-color: var(--input-bg);
+}
+
+.custom-tabs .nav-link.active {
+    color: #ffffff;
+    background: var(--bg-gradient);
+}
+
+
+/* ==========================================================
+   HUB - MENU LATERAL
+   ========================================================== */
+
+#hubTabs .nav-link {
+    color: var(--text-main);
+}
+
+#hubTabs .nav-link:not(.active):hover {
+    background-color: var(--input-bg);
+    color: var(--primary-purple);
+}
+
+#hubTabs .nav-link.active {
+    color: #ffffff;
+    background: var(--bg-gradient);
+}
+
+
+/* O Bootstrap deixa disabled com opacity muito baixa.
+   Aqui mantemos desabilitado, mas ainda legível. */
+
+#hubTabs .nav-link.disabled,
+#hubTabs .nav-link:disabled {
+    color: var(--text-muted) !important;
+    opacity: 0.7;
+    background-color: transparent;
+}
+
+
+/* ==========================================================
+   ALERTAS
+   ========================================================== */
+
+.alert {
+    border-color: var(--input-border);
+}
+
+[data-theme="dark"] .alert-light {
+    background-color: #273449;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+
+[data-theme="dark"] .alert-secondary {
+    background-color: #334155;
+    color: #f1f5f9;
+    border-color: #475569;
+}
+
+[data-theme="dark"] .alert-warning {
+    color: #fde68a;
+}
+
+[data-theme="dark"] .alert-danger {
+    color: #fecaca;
+}
+
+[data-theme="dark"] .alert-success {
+    color: #bbf7d0;
+}
+
+
+/* ==========================================================
+   BADGES SUBTLE
+   Usados em Colaborações
+   ========================================================== */
+
+[data-theme="dark"] .bg-primary-subtle {
+    background-color: rgba(106, 85, 234, 0.22) !important;
+}
+
+[data-theme="dark"] .text-primary {
+    color: #a99cff !important;
+}
+
+[data-theme="dark"] .bg-success-subtle {
+    background-color: rgba(0, 184, 148, 0.18) !important;
+}
+
+[data-theme="dark"] .text-success {
+    color: #5eead4 !important;
+}
+
+[data-theme="dark"] .bg-warning-subtle {
+    background-color: rgba(245, 158, 11, 0.18) !important;
+}
+
+[data-theme="dark"] .text-warning-emphasis {
+    color: #fde68a !important;
+}
+
+
+/* ==========================================================
+   CORREÇÕES DE CLASSES FIXAS DO BOOTSTRAP NO DARK MODE
+   ========================================================== */
+
+[data-theme="dark"] .text-dark {
+    color: #f8fafc !important;
+}
+
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .bg-light {
+    background-color: #334155 !important;
+}
+
+[data-theme="dark"] .bg-white {
+    /* Mantém branco apenas onde realmente é necessário,
+       como a área do QR Code. */
+    color: #1e293b;
+}
+
+
+/* ==========================================================
+   CARDS / LISTAS INTERNAS
+   ========================================================== */
+
+.card,
+.list-group-item {
+    color: var(--text-main);
+}
+
+[data-theme="dark"] .list-group-item {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border-color: var(--input-border);
+}
+
+
+/* ==========================================================
+   LINKS
+   ========================================================== */
+
+[data-theme="dark"] a:not(.btn):not(.navbar-brand):not(.nav-link):not(.dropdown-item) {
+    color: #a99cff;
+}
+
+
+/* ==========================================================
+   TRANSIÇÕES
+   ========================================================== */
+
+.dropdown-menu,
+.modal-content,
+.form-control,
+.form-select,
+.input-group-text,
+.table,
+.bg-card-theme,
+.list-group-item {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* ==========================================================
+   LOGIN - MELHOR CONTRASTE NO MODO ESCURO
+========================================================== */
+
+[data-theme="dark"] #email,
+[data-theme="dark"] #senha {
+
+    background-color: #334155 !important;
+
+    color: #f8fafc !important;
+
+    border-color: #64748b !important;
+
+}
+
+
+[data-theme="dark"] #email::placeholder,
+[data-theme="dark"] #senha::placeholder {
+
+    color: #cbd5e1 !important;
+
+    opacity: 0.85;
+
+}
+
+
+/* Ícones do input */
+
+[data-theme="dark"] .input-group-text-custom {
+
+    background-color: #334155 !important;
+
+    color: #e2e8f0 !important;
+
+    border-color: #64748b !important;
+
+}
+
+
+/* Quando clicar no campo */
+
+[data-theme="dark"] .form-control-custom:focus {
+
+    background-color: #334155 !important;
+
+    color: #ffffff !important;
+
+    border-color: #8b7cf6 !important;
+
+    box-shadow:
+        0 0 0 0.2rem
+        rgba(106, 85, 234, 0.20) !important;
+
+}
+
+
+/* Texto digitado pelo navegador/autofill */
+
+[data-theme="dark"] input:-webkit-autofill,
+[data-theme="dark"] input:-webkit-autofill:hover,
+[data-theme="dark"] input:-webkit-autofill:focus {
+
+    -webkit-text-fill-color: #f8fafc !important;
+
+    box-shadow:
+        0 0 0 1000px
+        #334155 inset !important;
+
+    transition:
+        background-color 9999s ease-out 0s;
+
+}
+
+
+/* ==========================================================
+   ALERTAS DO LOGIN
+========================================================== */
+
+[data-theme="dark"] #alertFeedback.alert-danger {
+
+    background-color: #451a1a !important;
+
+    border: 1px solid #ef4444 !important;
+
+    color: #fecaca !important;
+
+}
+
+
+[data-theme="dark"] #alertFeedback.alert-success {
+
+    background-color: #052e2b !important;
+
+    border: 1px solid #10b981 !important;
+
+    color: #a7f3d0 !important;
+
+}
+
+
+[data-theme="dark"] #alertFeedback.alert-warning {
+
+    background-color: #422006 !important;
+
+    border: 1px solid #f59e0b !important;
+
+    color: #fde68a !important;
+
+}
+
+
+/* ==========================================================
+   LABELS DO LOGIN
+========================================================== */
+
+[data-theme="dark"] .form-label {
+
+    color: #e2e8f0 !important;
+
+}
+
+
+/* ==========================================================
+   CARD DO LOGIN
+========================================================== */
+
+[data-theme="dark"] .card-custom {
+
+    background-color: #1e293b !important;
+
+    border:
+        1px solid #334155 !important;
+
+}
+
+
+/* ==========================================================
+   LINK DE CADASTRO / EXPLORAR
+========================================================== */
+
+[data-theme="dark"] .card-custom a {
+
+    color: #a89cff;
+
+}
+
+
+[data-theme="dark"] .card-custom a:hover {
+
+    color: #c4baff;
+
+}
+
+/* ==========================================================
+   ALERTAS - MELHOR VISIBILIDADE NO TEMA ESCURO
+========================================================== */
+
+[data-theme="dark"] .alert-success {
+
+    background-color: #052e2b !important;
+
+    border: 1px solid #10b981 !important;
+
+    color: #a7f3d0 !important;
+
+}
+
+
+[data-theme="dark"] .alert-danger {
+
+    background-color: #451a1a !important;
+
+    border: 1px solid #ef4444 !important;
+
+    color: #fecaca !important;
+
+}
+
+
+[data-theme="dark"] .alert-warning {
+
+    background-color: #422006 !important;
+
+    border: 1px solid #f59e0b !important;
+
+    color: #fde68a !important;
+
+}
+
+
+[data-theme="dark"] .alert-info {
+
+    background-color: #0c4a6e !important;
+
+    border: 1px solid #38bdf8 !important;
+
+    color: #bae6fd !important;
+
+}
+
+/* ==========================================================
+   NOTIFICAÇÃO NÃO LIDA
+========================================================== */
+
+.notificacao-nao-lida {
+
+    background-color: #f1f5f9 !important;
+
+}
+
+
+/* TEMA ESCURO */
+
+[data-theme="dark"] .notificacao-nao-lida {
+
+    background-color: #172033 !important;
+
+    color: #f8fafc !important;
+
+}
+
+
+/* TÍTULO */
+
+[data-theme="dark"] .notificacao-nao-lida .text-main-theme {
+
+    color: #ffffff !important;
+
+}
+
+
+/* MENSAGEM E DATA */
+
+[data-theme="dark"] .notificacao-nao-lida .text-muted-theme {
+
+    color: #cbd5e1 !important;
+
+}
+
+
+/* SEPARADOR */
+
+[data-theme="dark"] .notificacao-nao-lida {
+
+    border-color: #334155 !important;
+
+}

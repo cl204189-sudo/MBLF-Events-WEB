@@ -1,0 +1,10 @@
+# Arquivos locais e privados
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+build/
+*.pem
+*.p12
+*.key

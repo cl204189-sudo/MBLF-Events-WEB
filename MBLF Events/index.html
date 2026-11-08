@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        MBLF Events - Eventos em um só lugar
+    </title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="imagem/LOGO2.png"
+    >
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body class="d-flex flex-column min-vh-100">
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav
+        class="navbar navbar-expand-lg navbar-dark
+               navbar-mblf shadow-sm py-2 sticky-top"
+    >
+
+        <div class="container">
+
+
+            <!-- LOGO -->
+
+            <a
+                class="navbar-brand
+                       d-flex
+                       align-items-center
+                       gap-2
+                       fw-bold"
+                href="index.html"
+            >
+
+                <img
+                    src="imagem/LOGO3.png"
+                    alt="MBLF Events"
+                    class="brand-logo"
+                >
+
+                <span class="fs-4">
+                    MBLF Events
+                </span>
+
+            </a>
+
+
+            <!-- MOBILE -->
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Abrir menu"
+                data-i18n-aria-label="ariaAbrirMenu"
+            >
+
+                <span
+                    class="navbar-toggler-icon"
+                ></span>
+
+            </button>
+
+
+            <div
+                class="collapse navbar-collapse"
+                id="navbarContent"
+            >
+
+
+                <!-- NAVEGAÇÃO -->
+
+                <ul
+                    class="navbar-nav
+                           me-auto
+                           mb-2
+                           mb-lg-0
+                           ms-lg-4"
+                >
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="explorar.html"
+                        >
+                            <i class="bi bi-compass me-1"></i>
+
+                            <span data-i18n="navExplorar">
+                                Explorar Eventos
+                            </span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="recursos.html"
+                            data-i18n="navRecursos"
+                        >
+                            Recursos
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="sobre.html"
+                            data-i18n="navSobre"
+                        >
+                            Sobre
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="contato.html"
+                            data-i18n="navContato"
+                        >
+                            Contato
+                        </a>
+
+                    </li>
+
+                </ul>
+
+
+                <!-- AÇÕES -->
+
+                <div
+                    class="d-flex
+                           align-items-center
+                           gap-2"
+                >
+
+
+                    <!-- TEMA -->
+
+                    <button
+                        class="btn
+                               btn-outline-light
+                               btn-sm"
+                        type="button"
+                        onclick="alternarTema()"
+                        title="Alternar tema"
+                        aria-label="Alternar tema"
+                        data-i18n-title="temaAlternar"
+                        data-i18n-aria-label="temaAlternar"
+                    >
+
+                        <i
+                            id="icone-tema"
+                            class="bi bi-moon-stars-fill"
+                        ></i>
+
+                    </button>
+
+
+                    <!-- IDIOMA -->
+
+                    <div class="dropdown me-2">
+
+                        <button
+                            class="btn
+                                   btn-sm
+                                   btn-outline-light
+                                   dropdown-toggle
+                                   d-flex
+                                   align-items-center
+                                   gap-1"
+                            type="button"
+                            id="dropdownIdioma"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            aria-label="Selecionar idioma"
+                            data-i18n-aria-label="idiomaSelecionar"
+                        >
+
+                            <img
+                                id="bandeira-atual"
+                                src="https://flagcdn.com/24x18/br.png"
+                                alt="Português"
+                                width="20"
+                                height="15"
+                                class="rounded-1"
+                            >
+
+                        </button>
+
+
+                        <ul
+                            class="dropdown-menu
+                                   dropdown-menu-end
+                                   shadow-sm"
+                            aria-labelledby="dropdownIdioma"
+                            style="min-width: 90px;"
+                        >
+
+                            <li>
+
+                                <button
+                                    class="dropdown-item
+                                           d-flex
+                                           align-items-center
+                                           gap-2
+                                           py-1"
+                                    type="button"
+                                    onclick="selecionarIdioma('pt')"
+                                >
+
+                                    <img
+                                        src="https://flagcdn.com/24x18/br.png"
+                                        alt="Português"
+                                        width="20"
+                                        height="15"
+                                    >
+
+                                    <span class="small">
+                                        PT
+                                    </span>
+
+                                </button>
+
+                            </li>
+
+
+                            <li>
+
+                                <button
+                                    class="dropdown-item
+                                           d-flex
+                                           align-items-center
+                                           gap-2
+                                           py-1"
+                                    type="button"
+                                    onclick="selecionarIdioma('en')"
+                                >
+
+                                    <img
+                                        src="https://flagcdn.com/24x18/us.png"
+                                        alt="English"
+                                        width="20"
+                                        height="15"
+                                    >
+
+                                    <span class="small">
+                                        EN
+                                    </span>
+
+                                </button>
+
+                            </li>
+
+
+                            <li>
+
+                                <button
+                                    class="dropdown-item
+                                           d-flex
+                                           align-items-center
+                                           gap-2
+                                           py-1"
+                                    type="button"
+                                    onclick="selecionarIdioma('es')"
+                                >
+
+                                    <img
+                                        src="https://flagcdn.com/24x18/es.png"
+                                        alt="Español"
+                                        width="20"
+                                        height="15"
+                                    >
+
+                                    <span class="small">
+                                        ES
+                                    </span>
+
+                                </button>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <!-- LOGIN -->
+
+                    <a
+                        class="btn
+                               btn-outline-light
+                               btn-sm
+                               px-3
+                               fw-semibold"
+                        href="login.html"
+                        data-i18n="navLogar"
+                    >
+                        Entrar
+                    </a>
+
+
+                    <!-- CADASTRO -->
+
+                    <a
+                        class="btn
+                               btn-light
+                               btn-sm
+                               px-3
+                               fw-semibold
+                               text-primary"
+                        href="cadastro.html"
+                        data-i18n="navCadastrar"
+                    >
+                        Cadastrar-se
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <header class="py-5">
+
+        <div class="container">
+
+            <div
+                class="row
+                       justify-content-center"
+            >
+
+                <div
+                    class="col-12
+                           col-lg-9
+                           text-center"
+                >
+
+
+                    <span
+                        class="badge
+                               rounded-pill
+                               bg-primary-subtle
+                               text-primary
+                               px-3
+                               py-2
+                               mb-3"
+                    >
+
+                        <i
+                            class="bi
+                                   bi-calendar-event
+                                   me-1"
+                        ></i>
+
+                        <span data-i18n="indexBadge">
+                            Sua experiência com eventos começa aqui
+                        </span>
+
+                    </span>
+
+
+                    <h1
+                        class="display-4
+                               fw-bold
+                               text-main-theme
+                               mb-3"
+                    >
+
+                        <span data-i18n="indexHeroTitulo1">
+                            Encontre, participe e organize
+                        </span>
+
+                        <span
+                            class="text-primary"
+                            data-i18n="indexHeroDestaque"
+                        >
+                            eventos
+                        </span>
+
+                        <span data-i18n="indexHeroTitulo2">
+                            em um só lugar
+                        </span>
+
+                    </h1>
+
+
+                    <p
+                        class="lead
+                               text-muted-theme
+                               mx-auto
+                               mb-4"
+                        style="max-width: 760px;"
+                        data-i18n="indexHeroTexto"
+                    >
+                        Descubra eventos, realize inscrições e acompanhe
+                        suas participações. Se quiser organizar seu próprio
+                        evento, utilize as ferramentas do MBLF Events para
+                        trabalhar com sua equipe.
+                    </p>
+
+
+                    <div
+                        class="d-flex
+                               flex-column
+                               flex-sm-row
+                               justify-content-center
+                               gap-3"
+                    >
+
+                        <a
+                            href="explorar.html"
+                            class="btn
+                                   btn-mblf-primary
+                                   px-4
+                                   py-3
+                                   rounded-3
+                                   fw-semibold"
+                        >
+
+                            <i
+                                class="bi
+                                       bi-search
+                                       me-2"
+                            ></i>
+
+                            <span data-i18n="btnExplorarEventos">
+                                Explorar Eventos
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="cadastro.html"
+                            class="btn
+                                   btn-outline-secondary
+                                   px-4
+                                   py-3
+                                   rounded-3
+                                   fw-semibold"
+                        >
+
+                            <i
+                                class="bi
+                                       bi-person-plus
+                                       me-2"
+                            ></i>
+
+                            <span data-i18n="indexCriarMinhaConta">
+                                Criar minha conta
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         RECURSOS
+    ====================================================== -->
+
+    <section
+        id="recursos"
+        class="py-5"
+    >
+
+        <div class="container">
+
+
+            <div class="text-center mb-5">
+
+                <h2
+                    class="fw-bold
+                           text-main-theme"
+                    data-i18n="indexRecursosTitulo"
+                >
+                    Tudo que você precisa para seus eventos
+                </h2>
+
+
+                <p
+                    class="text-muted-theme"
+                    data-i18n="indexRecursosSubtitulo"
+                >
+                    Participe, organize e acompanhe tudo pela plataforma.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- PARTICIPAR -->
+
+                <div class="col-12 col-md-4">
+
+                    <div
+                        class="card
+                               card-custom
+                               h-100
+                               p-4
+                               border-0
+                               shadow-sm
+                               d-flex
+                               flex-column"
+                    >
+
+                        <div
+                            class="fs-1
+                                   text-primary
+                                   mb-3"
+                        >
+
+                            <i
+                                class="bi
+                                       bi-ticket-perforated"
+                            ></i>
+
+                        </div>
+
+
+                        <h4
+                            class="fw-bold
+                                   text-main-theme"
+                            data-i18n="indexParticiparTitulo"
+                        >
+                            Participe de Eventos
+                        </h4>
+
+
+                        <p
+                            class="text-muted-theme
+                                   small"
+                            data-i18n="indexParticiparTexto"
+                        >
+                            Explore eventos disponíveis, realize sua
+                            inscrição e acompanhe suas participações.
+                        </p>
+
+
+                        <a
+                            href="explorar.html"
+                            class="text-decoration-none
+                                   fw-semibold
+                                   small
+                                   mt-auto"
+                        >
+
+                            <span data-i18n="indexExplorarLink">
+                                Explorar eventos
+                            </span>
+
+                            <i
+                                class="bi
+                                       bi-arrow-right
+                                       ms-1"
+                            ></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ORGANIZAR -->
+
+                <div class="col-12 col-md-4">
+
+                    <div
+                        class="card
+                               card-custom
+                               h-100
+                               p-4
+                               border-0
+                               shadow-sm
+                               d-flex
+                               flex-column"
+                    >
+
+                        <div
+                            class="fs-1
+                                   text-primary
+                                   mb-3"
+                        >
+
+                            <i
+                                class="bi bi-kanban"
+                            ></i>
+
+                        </div>
+
+
+                        <h4
+                            class="fw-bold
+                                   text-main-theme"
+                            data-i18n="indexOrganizarTitulo"
+                        >
+                            Organize seu Evento
+                        </h4>
+
+
+                        <p
+                            class="text-muted-theme
+                                   small"
+                            data-i18n="indexOrganizarTexto"
+                        >
+                            Crie seus próprios eventos e trabalhe com
+                            colaboradores, tarefas, calendário, chat,
+                            inscritos e outras ferramentas pelo Hub
+                            de Organização.
+                        </p>
+
+
+                        <a
+                            href="cadastro.html"
+                            class="text-decoration-none
+                                   fw-semibold
+                                   small
+                                   mt-auto"
+                        >
+
+                            <span data-i18n="btnComecar">
+                                Começar agora
+                            </span>
+
+                            <i
+                                class="bi
+                                       bi-arrow-right
+                                       ms-1"
+                            ></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CERTIFICADOS -->
+
+                <div class="col-12 col-md-4">
+
+                    <div
+                        class="card
+                               card-custom
+                               h-100
+                               p-4
+                               border-0
+                               shadow-sm
+                               d-flex
+                               flex-column"
+                    >
+
+                        <div
+                            class="fs-1
+                                   text-primary
+                                   mb-3"
+                        >
+
+                            <i
+                                class="bi
+                                       bi-patch-check"
+                            ></i>
+
+                        </div>
+
+
+                        <h4
+                            class="fw-bold
+                                   text-main-theme"
+                            data-i18n="indexCertificadosTitulo"
+                        >
+                            Certificados
+                        </h4>
+
+
+                        <p
+                            class="text-muted-theme
+                                   small"
+                            data-i18n="indexCertificadosTexto"
+                        >
+                            Após a confirmação de presença, acompanhe
+                            os certificados liberados diretamente pela
+                            sua conta.
+                        </p>
+
+
+                        <a
+                            href="login.html"
+                            class="text-decoration-none
+                                   fw-semibold
+                                   small
+                                   mt-auto"
+                        >
+
+                            <span data-i18n="indexAcessarConta">
+                                Acessar minha conta
+                            </span>
+
+                            <i
+                                class="bi
+                                       bi-arrow-right
+                                       ms-1"
+                            ></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         HUB
+    ====================================================== -->
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div
+                class="row
+                       align-items-center
+                       g-5"
+            >
+
+
+                <div class="col-12 col-lg-6">
+
+
+                    <span
+                        class="text-primary
+                               fw-semibold"
+                        data-i18n="indexOrganizadoresLabel"
+                    >
+                        PARA ORGANIZADORES
+                    </span>
+
+
+                    <h2
+                        class="fw-bold
+                               text-main-theme
+                               mt-2"
+                        data-i18n="indexHubTitulo"
+                    >
+                        Planeje seu evento com sua equipe
+                    </h2>
+
+
+                    <p
+                        class="text-muted-theme"
+                        data-i18n="indexHubTexto"
+                    >
+                        O Hub de Organização reúne ferramentas
+                        para preparar e administrar cada evento
+                        em um único ambiente.
+                    </p>
+
+
+                    <div class="row g-3 mt-2">
+
+
+                        <div class="col-6">
+
+                            <div
+                                class="d-flex
+                                       align-items-center
+                                       gap-2"
+                            >
+
+                                <i
+                                    class="bi
+                                           bi-people-fill
+                                           text-primary"
+                                ></i>
+
+                                <span
+                                    class="text-main-theme"
+                                    data-i18n="hubColaboradores"
+                                >
+                                    Colaboradores
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div
+                                class="d-flex
+                                       align-items-center
+                                       gap-2"
+                            >
+
+                                <i
+                                    class="bi
+                                           bi-chat-dots-fill
+                                           text-primary"
+                                ></i>
+
+                                <span
+                                    class="text-main-theme"
+                                    data-i18n="hubChat"
+                                >
+                                    Chat
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div
+                                class="d-flex
+                                       align-items-center
+                                       gap-2"
+                            >
+
+                                <i
+                                    class="bi
+                                           bi-calendar-week
+                                           text-primary"
+                                ></i>
+
+                                <span
+                                    class="text-main-theme"
+                                    data-i18n="indexCalendario"
+                                >
+                                    Calendário
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div
+                                class="d-flex
+                                       align-items-center
+                                       gap-2"
+                            >
+
+                                <i
+                                    class="bi
+                                           bi-list-check
+                                           text-primary"
+                                ></i>
+
+                                <span
+                                    class="text-main-theme"
+                                    data-i18n="hubTarefas"
+                                >
+                                    Tarefas
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div
+                                class="d-flex
+                                       align-items-center
+                                       gap-2"
+                            >
+
+                                <i
+                                    class="bi
+                                           bi-person-check
+                                           text-primary"
+                                ></i>
+
+                                <span
+                                    class="text-main-theme"
+                                    data-i18n="hubInscritos"
+                                >
+                                    Inscritos
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div
+                                class="d-flex
+                                       align-items-center
+                                       gap-2"
+                            >
+
+                                <i
+                                    class="bi
+                                           bi-patch-check-fill
+                                           text-primary"
+                                ></i>
+
+                                <span
+                                    class="text-main-theme"
+                                    data-i18n="hubCertificados"
+                                >
+                                    Certificados
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-12 col-lg-6">
+
+                    <div
+                        class="card
+                               card-custom
+                               border-0
+                               shadow-sm
+                               p-4"
+                    >
+
+                        <div class="text-center py-4">
+
+                            <i
+                                class="bi
+                                       bi-calendar2-check
+                                       text-primary"
+                                style="font-size: 5rem;"
+                            ></i>
+
+
+                            <h4
+                                class="fw-bold
+                                       text-main-theme
+                                       mt-3"
+                                data-i18n="indexHubCardTitulo"
+                            >
+                                Seu evento. Sua equipe.
+                                Um único Hub.
+                            </h4>
+
+
+                            <p
+                                class="text-muted-theme"
+                                data-i18n="indexHubCardTexto"
+                            >
+                                Organize todas as etapas necessárias
+                                para preparar seu evento.
+                            </p>
+
+
+                            <a
+                                href="cadastro.html"
+                                class="btn
+                                       btn-mblf-primary
+                                       px-4"
+                                data-i18n="btnCriarConta"
+                            >
+                                Criar conta
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         COMO FUNCIONA
+    ====================================================== -->
+
+    <section class="py-5">
+
+        <div class="container">
+
+
+            <div class="text-center mb-5">
+
+                <h2
+                    class="fw-bold
+                           text-main-theme"
+                    data-i18n="indexComoFuncionaTitulo"
+                >
+                    Como funciona?
+                </h2>
+
+
+                <p
+                    class="text-muted-theme"
+                    data-i18n="indexComoFuncionaTexto"
+                >
+                    Comece a utilizar o MBLF Events
+                    em poucos passos.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- PASSO 1 -->
+
+                <div class="col-12 col-md-4">
+
+                    <div class="text-center px-3">
+
+                        <div
+                            class="rounded-circle
+                                   bg-primary
+                                   text-white
+                                   d-flex
+                                   align-items-center
+                                   justify-content-center
+                                   mx-auto
+                                   mb-3
+                                   fw-bold
+                                   fs-4"
+                            style="width: 58px; height: 58px;"
+                        >
+                            1
+                        </div>
+
+
+                        <h5
+                            class="fw-bold
+                                   text-main-theme"
+                            data-i18n="indexPasso1Titulo"
+                        >
+                            Crie sua conta
+                        </h5>
+
+
+                        <p
+                            class="text-muted-theme
+                                   small"
+                            data-i18n="indexPasso1Texto"
+                        >
+                            Cadastre-se para realizar inscrições
+                            e acessar todas as funcionalidades
+                            disponíveis para usuários.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSO 2 -->
+
+                <div class="col-12 col-md-4">
+
+                    <div class="text-center px-3">
+
+                        <div
+                            class="rounded-circle
+                                   bg-primary
+                                   text-white
+                                   d-flex
+                                   align-items-center
+                                   justify-content-center
+                                   mx-auto
+                                   mb-3
+                                   fw-bold
+                                   fs-4"
+                            style="width: 58px; height: 58px;"
+                        >
+                            2
+                        </div>
+
+
+                        <h5
+                            class="fw-bold
+                                   text-main-theme"
+                            data-i18n="indexPasso2Titulo"
+                        >
+                            Participe ou organize
+                        </h5>
+
+
+                        <p
+                            class="text-muted-theme
+                                   small"
+                            data-i18n="indexPasso2Texto"
+                        >
+                            Encontre eventos para participar ou
+                            crie seu próprio evento e torne-se
+                            seu organizador.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSO 3 -->
+
+                <div class="col-12 col-md-4">
+
+                    <div class="text-center px-3">
+
+                        <div
+                            class="rounded-circle
+                                   bg-primary
+                                   text-white
+                                   d-flex
+                                   align-items-center
+                                   justify-content-center
+                                   mx-auto
+                                   mb-3
+                                   fw-bold
+                                   fs-4"
+                            style="width: 58px; height: 58px;"
+                        >
+                            3
+                        </div>
+
+
+                        <h5
+                            class="fw-bold
+                                   text-main-theme"
+                            data-i18n="indexPasso3Titulo"
+                        >
+                            Acompanhe tudo
+                        </h5>
+
+
+                        <p
+                            class="text-muted-theme
+                                   small"
+                            data-i18n="indexPasso3Texto"
+                        >
+                            Consulte inscrições, eventos,
+                            QR Codes, atividades e certificados
+                            pelo seu painel.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHAMADA FINAL
+    ====================================================== -->
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div
+                class="card
+                       card-custom
+                       border-0
+                       shadow-sm
+                       p-4
+                       p-md-5
+                       text-center"
+            >
+
+                <h2
+                    class="fw-bold
+                           text-main-theme"
+                    data-i18n="indexCtaTitulo"
+                >
+                    Pronto para começar?
+                </h2>
+
+
+                <p
+                    class="text-muted-theme
+                           mx-auto"
+                    style="max-width: 650px;"
+                    data-i18n="indexCtaTexto"
+                >
+                    Crie sua conta para participar de eventos
+                    ou começar a planejar seu próprio evento.
+                </p>
+
+
+                <div
+                    class="d-flex
+                           flex-column
+                           flex-sm-row
+                           gap-3
+                           justify-content-center"
+                >
+
+                    <a
+                        href="cadastro.html"
+                        class="btn
+                               btn-mblf-primary
+                               px-4"
+                        data-i18n="btnCriarConta"
+                    >
+                        Criar conta
+                    </a>
+
+
+                    <a
+                        href="explorar.html"
+                        class="btn
+                               btn-outline-secondary
+                               px-4"
+                        data-i18n="indexVerEventos"
+                    >
+                        Ver eventos
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer
+        id="contato"
+        class="mt-auto
+               py-5
+               border-top
+               footer-custom"
+    >
+
+        <div class="container">
+
+            <div class="row g-4">
+
+
+                <!-- MARCA -->
+
+                <div class="col-12 col-md-4">
+
+                    <div
+                        class="d-flex
+                               align-items-center
+                               gap-2
+                               mb-3"
+                    >
+
+                        <img
+                            src="imagem/LOGO2.png"
+                            alt="MBLF Events"
+                            width="30"
+                        >
+
+                        <span
+                            class="fw-bold
+                                   fs-5
+                                   text-main-theme"
+                        >
+                            MBLF Events
+                        </span>
+
+                    </div>
+
+
+                    <p
+                        class="text-muted-theme
+                               small"
+                        data-i18n="indexFooterDescricao"
+                    >
+                        Plataforma para divulgação, participação
+                        e gerenciamento de eventos.
+                    </p>
+
+                </div>
+
+
+
+                <!-- LINKS -->
+
+                <div class="col-6 col-md-3">
+
+                    <h6
+                        class="fw-bold
+                               text-main-theme
+                               mb-3"
+                        data-i18n="ftLinksUteis"
+                    >
+                        Links Úteis
+                    </h6>
+
+
+                    <ul
+                        class="list-unstyled
+                               small
+                               d-flex
+                               flex-column
+                               gap-2"
+                    >
+
+                        <li>
+
+                            <a
+                                href="explorar.html"
+                                class="text-muted-theme
+                                       text-decoration-none"
+                                data-i18n="navExplorar"
+                            >
+                                Explorar Eventos
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                href="login.html"
+                                class="text-muted-theme
+                                       text-decoration-none"
+                                data-i18n="ftLogin"
+                            >
+                                Login
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                href="cadastro.html"
+                                class="text-muted-theme
+                                       text-decoration-none"
+                                data-i18n="ftCadastro"
+                            >
+                                Cadastro
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- SUPORTE -->
+
+                <div class="col-6 col-md-3">
+
+                    <h6
+                        class="fw-bold
+                               text-main-theme
+                               mb-3"
+                        data-i18n="ftSuporte"
+                    >
+                        Suporte
+                    </h6>
+
+
+                    <ul
+                        class="list-unstyled
+                               small
+                               d-flex
+                               flex-column
+                               gap-2"
+                    >
+
+                        <li>
+
+                            <a
+                                href="#"
+                                class="text-muted-theme
+                                       text-decoration-none"
+                                data-i18n="ftPrivacidade"
+                            >
+                                Política de Privacidade
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                href="#"
+                                class="text-muted-theme
+                                       text-decoration-none"
+                                data-i18n="ftTermos"
+                            >
+                                Termos de Uso
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- REDES -->
+
+                <div class="col-12 col-md-2">
+
+                    <h6
+                        class="fw-bold
+                               text-main-theme
+                               mb-3"
+                        data-i18n="indexRedesSociais"
+                    >
+                        Redes Sociais
+                    </h6>
+
+
+                    <div
+                        class="d-flex
+                               gap-3
+                               fs-5"
+                    >
+
+                        <a
+                            href="#"
+                            class="text-muted-theme
+                                   link-hover"
+                            aria-label="Instagram"
+                        >
+                            <i class="bi bi-instagram"></i>
+                        </a>
+
+
+                        <a
+                            href="#"
+                            class="text-muted-theme
+                                   link-hover"
+                            aria-label="LinkedIn"
+                        >
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+
+
+                        <a
+                            href="#"
+                            class="text-muted-theme
+                                   link-hover"
+                            aria-label="GitHub"
+                        >
+                            <i class="bi bi-github"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <hr class="my-4 opacity-10">
+
+
+            <div
+                class="text-center
+                       text-muted-theme
+                       small"
+                data-i18n="footerTexto"
+            >
+                © 2026 MBLF Events.
+                Todos os direitos reservados.
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+    <script src="js/i18n.js"></script>
+
+
+</body>
+
+</html>

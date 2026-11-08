@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Administração - MBLF Events
+    </title>
+
+
+    <!-- BOOTSTRAP -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- BOOTSTRAP ICONS -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+
+
+    <style>
+
+        :root {
+
+            --primary-purple: #6a55ea;
+
+            --primary-cyan: #00b894;
+
+            --bg-gradient:
+                linear-gradient(
+                    135deg,
+                    #6a55ea 0%,
+                    #00b894 100%
+                );
+
+            --bg-body: #f8fafc;
+
+            --bg-sidebar: #ffffff;
+
+            --text-main: #1e293b;
+
+            --text-muted: #64748b;
+
+            --card-bg: #ffffff;
+
+            --input-bg: #f1f5f9;
+
+            --input-border: #cbd5e1;
+
+            --card-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        [data-theme="dark"] {
+
+            --bg-body: #0f172a;
+
+            --bg-sidebar: #1e293b;
+
+            --text-main: #f8fafc;
+
+            --text-muted: #cbd5e1;
+
+            --card-bg: #1e293b;
+
+            --input-bg: #334155;
+
+            --input-border: #475569;
+
+            --card-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.4);
+
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family:
+                "Segoe UI",
+                system-ui,
+                sans-serif;
+
+            background:
+                var(--bg-body);
+
+            color:
+                var(--text-main);
+
+        }
+
+
+        .navbar-admin {
+
+            background:
+                var(--bg-gradient);
+
+            min-height:
+                70px;
+
+        }
+
+
+        .admin-layout {
+
+            min-height:
+                calc(100vh - 70px);
+
+        }
+
+
+        .sidebar-admin {
+
+            width:
+                270px;
+
+            min-height:
+                calc(100vh - 70px);
+
+            background:
+                var(--bg-sidebar);
+
+            border-right:
+                1px solid
+                var(--input-border);
+
+            padding:
+                24px 16px;
+
+        }
+
+
+        .sidebar-admin .nav-link {
+
+            color:
+                var(--text-muted);
+
+            border-radius:
+                12px;
+
+            padding:
+                12px 14px;
+
+            margin-bottom:
+                5px;
+
+            text-align:
+                left;
+
+            transition:
+                all .2s ease;
+
+        }
+
+
+        .sidebar-admin .nav-link:hover {
+
+            color:
+                var(--text-main);
+
+            background:
+                var(--input-bg);
+
+        }
+
+
+        .sidebar-admin
+        .nav-link.active {
+
+            color:
+                #ffffff;
+
+            background:
+                var(--bg-gradient);
+
+        }
+
+
+        .content-admin {
+
+            flex: 1;
+
+            min-width: 0;
+
+            padding:
+                32px;
+
+        }
+
+
+        .card-custom {
+
+            background:
+                var(--card-bg);
+
+            color:
+                var(--text-main);
+
+            border:
+                1px solid
+                var(--input-border);
+
+            border-radius:
+                16px;
+
+            box-shadow:
+                var(--card-shadow);
+
+        }
+
+
+        .text-main-theme {
+
+            color:
+                var(--text-main)
+                !important;
+
+        }
+
+
+        .text-muted-theme {
+
+            color:
+                var(--text-muted)
+                !important;
+
+        }
+
+
+        .form-control,
+        .form-select {
+
+            background-color:
+                var(--input-bg);
+
+            color:
+                var(--text-main);
+
+            border-color:
+                var(--input-border);
+
+        }
+
+
+        .form-control:focus,
+        .form-select:focus {
+
+            background-color:
+                var(--input-bg);
+
+            color:
+                var(--text-main);
+
+        }
+
+
+        [data-theme="dark"]
+        .form-control::placeholder {
+
+            color:
+                #94a3b8;
+
+        }
+
+
+        [data-theme="dark"]
+        .table {
+
+            --bs-table-bg:
+                transparent;
+
+            --bs-table-color:
+                var(--text-main);
+
+            --bs-table-border-color:
+                var(--input-border);
+
+        }
+
+
+        [data-theme="dark"]
+        .modal-content {
+
+            background:
+                var(--card-bg);
+
+            color:
+                var(--text-main);
+
+        }
+
+
+        [data-theme="dark"]
+        .modal-header,
+        [data-theme="dark"]
+        .modal-footer {
+
+            border-color:
+                var(--input-border);
+
+        }
+
+
+        .summary-icon {
+
+            width:
+                52px;
+
+            height:
+                52px;
+
+            border-radius:
+                14px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                1.4rem;
+
+        }
+
+
+        .btn-gradient {
+
+            background:
+                var(--bg-gradient);
+
+            border:
+                none;
+
+            color:
+                #ffffff;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .btn-gradient:hover {
+
+            color:
+                #ffffff;
+
+            opacity:
+                .92;
+
+        }
+
+
+        .table-responsive {
+
+            border-radius:
+                12px;
+
+        }
+
+
+        .empty-state {
+
+            padding:
+                60px 20px;
+
+            text-align:
+                center;
+
+            color:
+                var(--text-muted);
+
+        }
+
+
+        .empty-state i {
+
+            font-size:
+                3rem;
+
+        }
+
+
+        .admin-section {
+
+            display:
+                none;
+
+        }
+
+
+        .admin-section.active {
+
+            display:
+                block;
+
+        }
+
+
+        @media
+        (
+            max-width:
+            991px
+        ) {
+
+            .admin-layout {
+
+                display:
+                    block !important;
+
+            }
+
+
+            .sidebar-admin {
+
+                width:
+                    100%;
+
+                min-height:
+                    auto;
+
+                border-right:
+                    none;
+
+                border-bottom:
+                    1px solid
+                    var(--input-border);
+
+            }
+
+
+            .sidebar-admin nav {
+
+                display:
+                    flex;
+
+                gap:
+                    6px;
+
+                overflow-x:
+                    auto;
+
+            }
+
+
+            .sidebar-admin .nav-link {
+
+                white-space:
+                    nowrap;
+
+            }
+
+
+            .content-admin {
+
+                padding:
+                    20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     NAVBAR
+======================================================= -->
+
+<nav
+    class="navbar navbar-admin
+           navbar-dark px-3 px-md-4"
+>
+
+    <div
+        class="container-fluid
+               d-flex justify-content-between"
+    >
+
+        <a
+            class="navbar-brand fw-bold"
+            href="index.html"
+        >
+
+            <i
+                class="bi bi-hexagon-fill me-2"
+            ></i>
+
+            MBLF Events
+
+            <span
+                class="badge bg-danger ms-2"
+            >
+                ADMIN
+            </span>
+
+        </a>
+
+
+        <div
+            class="d-flex
+                   align-items-center
+                   gap-2"
+        >
+
+            <button
+                class="btn
+                       btn-outline-light"
+                id="btnTemaAdmin"
+                type="button"
+                title="Alternar tema"
+            >
+
+                <i
+                    class="bi bi-sun"
+                    id="iconeTemaAdmin"
+                ></i>
+
+            </button>
+
+
+            <div
+                class="dropdown"
+            >
+
+                <button
+                    class="btn
+                           btn-outline-light
+                           dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    type="button"
+                >
+
+                    <i
+                        class="bi bi-person-circle me-1"
+                    ></i>
+
+                    <span
+                        id="nomeAdminNavbar"
+                    >
+                        Administrador
+                    </span>
+
+                </button>
+
+
+                <ul
+                    class="dropdown-menu
+                           dropdown-menu-end"
+                >
+
+                    <li>
+
+                        <a
+                            class="dropdown-item"
+                            href="index.html"
+                        >
+
+                            <i
+                                class="bi bi-house me-2"
+                            ></i>
+
+                            Ir para o site
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+                        <hr
+                            class="dropdown-divider"
+                        >
+                    </li>
+
+
+                    <li>
+
+                        <button
+                            class="dropdown-item
+                                   text-danger"
+                            id="btnSairAdmin"
+                        >
+
+                            <i
+                                class="bi bi-box-arrow-right me-2"
+                            ></i>
+
+                            Sair
+
+                        </button>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+<!-- Seletor de idioma MBLF Events -->
+<div class="dropdown mblf-language-selector" style="display:inline-block; margin: .25rem .4rem;">
+  <button class="btn btn-outline-secondary btn-sm dropdown-toggle" id="mblfLanguageButton"
+          data-bs-toggle="dropdown" aria-expanded="false" title="Selecionar idioma"
+          aria-label="Selecionar idioma" type="button">
+    <img id="mblfLanguageFlag" src="https://flagcdn.com/24x18/br.png" width="24" height="18"
+         alt="Português" style="object-fit:cover; margin-right:.35rem;">
+    <span id="mblfLanguageCode">PT</span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="mblfLanguageButton">
+    <li><button class="dropdown-item" type="button" onclick="selecionarIdioma('pt')"><img src="https://flagcdn.com/24x18/br.png" width="24" height="18" alt="Brasil" style="margin-right:.5rem;"> Português</button></li>
+    <li><button class="dropdown-item" type="button" onclick="selecionarIdioma('en')"><img src="https://flagcdn.com/24x18/us.png" width="24" height="18" alt="United States" style="margin-right:.5rem;"> English</button></li>
+    <li><button class="dropdown-item" type="button" onclick="selecionarIdioma('es')"><img src="https://flagcdn.com/24x18/es.png" width="24" height="18" alt="España" style="margin-right:.5rem;"> Español</button></li>
+  </ul>
+</div>
+
+</nav>
+
+
+
+<!-- ======================================================
+     LAYOUT
+======================================================= -->
+
+<div
+    class="admin-layout d-flex"
+>
+
+
+    <!-- ==================================================
+         SIDEBAR
+    =================================================== -->
+
+    <aside
+        class="sidebar-admin"
+    >
+
+        <div
+            class="small
+                   text-uppercase
+                   text-muted-theme
+                   fw-semibold
+                   px-2 mb-2"
+        >
+
+            Administração
+
+        </div>
+
+
+        <nav>
+
+            <button
+                class="nav-link
+                       active
+                       w-100"
+                data-admin-section="visao-geral"
+            >
+
+                <i
+                    class="bi bi-speedometer2 me-2"
+                ></i>
+
+                Visão Geral
+
+            </button>
+
+
+            <button
+                class="nav-link w-100"
+                data-admin-section="usuarios"
+            >
+
+                <i
+                    class="bi bi-people me-2"
+                ></i>
+
+                Usuários
+
+            </button>
+
+
+            <button
+                class="nav-link w-100"
+                data-admin-section="eventos"
+            >
+
+                <i
+                    class="bi bi-calendar-event me-2"
+                ></i>
+
+                Eventos
+
+            </button>
+
+
+            <button
+                class="nav-link w-100"
+                data-admin-section="planos"
+            >
+
+                <i
+                    class="bi bi-box-seam me-2"
+                ></i>
+
+                Planos
+
+            </button>
+
+
+            <button
+                class="nav-link w-100"
+                data-admin-section="pagamentos"
+            >
+
+                <i
+                    class="bi bi-credit-card me-2"
+                ></i>
+
+                Pagamentos
+
+            </button>
+
+
+            <button
+                class="nav-link w-100"
+                data-admin-section="historico"
+            >
+
+                <i
+                    class="bi bi-clock-history me-2"
+                ></i>
+
+                Histórico
+
+            </button>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- ==================================================
+         CONTEÚDO
+    =================================================== -->
+
+    <main
+        class="content-admin"
+    >
+
+
+        <!-- ==============================================
+             ALERTA GERAL
+        =============================================== -->
+
+        <div
+            class="alert d-none"
+            id="alertAdmin"
+        ></div>
+
+
+
+        <!-- ==============================================
+             VISÃO GERAL
+        =============================================== -->
+
+        <section
+            class="admin-section active"
+            id="section-visao-geral"
+        >
+
+            <div class="mb-4">
+
+                <h2
+                    class="fw-bold
+                           text-main-theme"
+                >
+
+                    Painel Administrativo
+
+                </h2>
+
+                <p
+                    class="text-muted-theme"
+                >
+
+                    Visão geral da plataforma
+                    MBLF Events.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="row g-4"
+            >
+
+
+                <div
+                    class="col-md-6
+                           col-xl-3"
+                >
+
+                    <div
+                        class="card-custom
+                               p-4 h-100"
+                    >
+
+                        <div
+                            class="d-flex
+                                   justify-content-between"
+                        >
+
+                            <div>
+
+                                <div
+                                    class="text-muted-theme"
+                                >
+                                    Usuários
+                                </div>
+
+                                <h2
+                                    class="fw-bold mb-0"
+                                    id="resumoUsuarios"
+                                >
+                                    -
+                                </h2>
+
+                            </div>
+
+
+                            <div
+                                class="summary-icon
+                                       bg-primary-subtle
+                                       text-primary"
+                            >
+
+                                <i
+                                    class="bi bi-people"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="col-md-6
+                           col-xl-3"
+                >
+
+                    <div
+                        class="card-custom
+                               p-4 h-100"
+                    >
+
+                        <div
+                            class="d-flex
+                                   justify-content-between"
+                        >
+
+                            <div>
+
+                                <div
+                                    class="text-muted-theme"
+                                >
+                                    Eventos
+                                </div>
+
+                                <h2
+                                    class="fw-bold mb-0"
+                                    id="resumoEventos"
+                                >
+                                    -
+                                </h2>
+
+                            </div>
+
+
+                            <div
+                                class="summary-icon
+                                       bg-success-subtle
+                                       text-success"
+                            >
+
+                                <i
+                                    class="bi bi-calendar-event"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="col-md-6
+                           col-xl-3"
+                >
+
+                    <div
+                        class="card-custom
+                               p-4 h-100"
+                    >
+
+                        <div
+                            class="d-flex
+                                   justify-content-between"
+                        >
+
+                            <div>
+
+                                <div
+                                    class="text-muted-theme"
+                                >
+                                    Planos ativos
+                                </div>
+
+                                <h2
+                                    class="fw-bold mb-0"
+                                    id="resumoPlanos"
+                                >
+                                    -
+                                </h2>
+
+                            </div>
+
+
+                            <div
+                                class="summary-icon
+                                       bg-warning-subtle
+                                       text-warning"
+                            >
+
+                                <i
+                                    class="bi bi-box-seam"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="col-md-6
+                           col-xl-3"
+                >
+
+                    <div
+                        class="card-custom
+                               p-4 h-100"
+                    >
+
+                        <div
+                            class="d-flex
+                                   justify-content-between"
+                        >
+
+                            <div>
+
+                                <div
+                                    class="text-muted-theme"
+                                >
+                                    Pagamentos
+                                </div>
+
+                                <h2
+                                    class="fw-bold mb-0"
+                                    id="resumoPagamentos"
+                                >
+                                    -
+                                </h2>
+
+                            </div>
+
+
+                            <div
+                                class="summary-icon
+                                       bg-info-subtle
+                                       text-info"
+                            >
+
+                                <i
+                                    class="bi bi-credit-card"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="card-custom
+                       p-4 mt-4"
+            >
+
+                <h5
+                    class="fw-bold mb-3"
+                >
+
+                    <i
+                        class="bi bi-shield-check me-2"
+                    ></i>
+
+                    Administração da plataforma
+
+                </h5>
+
+                <p
+                    class="text-muted-theme mb-0"
+                >
+
+                    Utilize o menu para gerenciar
+                    usuários, moderar eventos,
+                    controlar planos, acompanhar
+                    pagamentos e consultar o
+                    histórico administrativo.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================================
+             USUÁRIOS
+        =============================================== -->
+
+        <section
+            class="admin-section"
+            id="section-usuarios"
+        >
+
+            <div
+                class="d-flex
+                       flex-column
+                       flex-md-row
+                       justify-content-between
+                       gap-3 mb-4"
+            >
+
+                <div>
+
+                    <h2
+                        class="fw-bold
+                               text-main-theme"
+                    >
+                        Usuários
+                    </h2>
+
+                    <p
+                        class="text-muted-theme mb-0"
+                    >
+                        Controle de contas
+                        cadastradas.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn
+                           btn-outline-primary"
+                    id="btnAtualizarUsuarios"
+                >
+
+                    <i
+                        class="bi bi-arrow-clockwise me-1"
+                    ></i>
+
+                    Atualizar
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="card-custom p-4"
+            >
+
+                <div class="mb-3">
+
+                    <input
+                        type="search"
+                        class="form-control"
+                        id="filtroUsuarios"
+                        placeholder="Pesquisar por nome, email ou perfil..."
+                    >
+
+                </div>
+
+
+                <div
+                    class="table-responsive"
+                >
+
+                    <table
+                        class="table
+                               align-middle"
+                    >
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Usuário</th>
+
+                                <th>Perfil</th>
+
+                                <th>Status</th>
+
+                                <th>Cadastro</th>
+
+                                <th
+                                    class="text-end"
+                                >
+                                    Ações
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="tabelaUsuarios"
+                        >
+
+                            <tr>
+
+                                <td
+                                    colspan="6"
+                                    class="text-center py-5"
+                                >
+                                    Carregando...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================================
+             EVENTOS
+        =============================================== -->
+
+        <section
+            class="admin-section"
+            id="section-eventos"
+        >
+
+            <div
+                class="d-flex
+                       flex-column
+                       flex-md-row
+                       justify-content-between
+                       gap-3 mb-4"
+            >
+
+                <div>
+
+                    <h2
+                        class="fw-bold"
+                    >
+                        Eventos
+                    </h2>
+
+                    <p
+                        class="text-muted-theme mb-0"
+                    >
+                        Moderação dos eventos
+                        da plataforma.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn
+                           btn-outline-primary"
+                    id="btnAtualizarEventos"
+                >
+
+                    <i
+                        class="bi bi-arrow-clockwise me-1"
+                    ></i>
+
+                    Atualizar
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="card-custom p-4"
+            >
+
+                <input
+                    type="search"
+                    class="form-control mb-3"
+                    id="filtroEventos"
+                    placeholder="Pesquisar evento ou organizador..."
+                >
+
+
+                <div
+                    class="table-responsive"
+                >
+
+                    <table
+                        class="table align-middle"
+                    >
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Evento</th>
+
+                                <th>Organizador</th>
+
+                                <th>Data</th>
+
+                                <th>Status</th>
+
+                                <th
+                                    class="text-end"
+                                >
+                                    Ações
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="tabelaEventos"
+                        ></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================================
+             PLANOS
+        =============================================== -->
+
+        <section
+            class="admin-section"
+            id="section-planos"
+        >
+
+            <div
+                class="d-flex
+                       justify-content-between
+                       align-items-center
+                       flex-wrap
+                       gap-3 mb-4"
+            >
+
+                <div>
+
+                    <h2 class="fw-bold">
+                        Planos
+                    </h2>
+
+                    <p
+                        class="text-muted-theme mb-0"
+                    >
+                        Gerenciamento de planos
+                        do sistema.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn btn-gradient"
+                    id="btnNovoPlano"
+                >
+
+                    <i
+                        class="bi bi-plus-lg me-1"
+                    ></i>
+
+                    Novo Plano
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="row g-4"
+                id="containerPlanos"
+            ></div>
+
+        </section>
+
+
+
+        <!-- ==============================================
+             PAGAMENTOS
+        =============================================== -->
+
+        <section
+            class="admin-section"
+            id="section-pagamentos"
+        >
+
+            <div
+                class="d-flex
+                       justify-content-between
+                       gap-3 mb-4"
+            >
+
+                <div>
+
+                    <h2 class="fw-bold">
+                        Pagamentos
+                    </h2>
+
+                    <p
+                        class="text-muted-theme mb-0"
+                    >
+                        Histórico financeiro
+                        da plataforma.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn
+                           btn-outline-primary"
+                    id="btnAtualizarPagamentos"
+                >
+
+                    <i
+                        class="bi bi-arrow-clockwise"
+                    ></i>
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="card-custom p-4"
+            >
+
+                <div
+                    class="table-responsive"
+                >
+
+                    <table
+                        class="table align-middle"
+                    >
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Usuário</th>
+
+                                <th>Evento</th>
+
+                                <th>Plano</th>
+
+                                <th>Valor</th>
+
+                                <th>Status</th>
+
+                                <th>Data</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="tabelaPagamentos"
+                        ></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================================
+             HISTÓRICO
+        =============================================== -->
+
+        <section
+            class="admin-section"
+            id="section-historico"
+        >
+
+            <div
+                class="d-flex
+                       justify-content-between
+                       mb-4"
+            >
+
+                <div>
+
+                    <h2 class="fw-bold">
+                        Histórico Administrativo
+                    </h2>
+
+                    <p
+                        class="text-muted-theme mb-0"
+                    >
+                        Registro das ações realizadas
+                        pelos administradores.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn
+                           btn-outline-primary"
+                    id="btnAtualizarHistorico"
+                >
+
+                    <i
+                        class="bi bi-arrow-clockwise"
+                    ></i>
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="card-custom p-4"
+                id="containerHistorico"
+            ></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- ======================================================
+     MODAL FUNCIONÁRIO
+======================================================= -->
+
+<div
+    class="modal fade"
+    id="modalFuncionario"
+    tabindex="-1"
+>
+
+    <div
+        class="modal-dialog
+               modal-dialog-centered"
+    >
+
+        <div
+            class="modal-content"
+        >
+
+            <div
+                class="modal-header"
+            >
+
+                <h5
+                    class="modal-title"
+                >
+
+                    <i
+                        class="bi bi-person-gear me-2"
+                    ></i>
+
+                    Tornar funcionário
+
+                </h5>
+
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+
+            <form
+                id="formFuncionario"
+            >
+
+                <div
+                    class="modal-body"
+                >
+
+                    <input
+                        type="hidden"
+                        id="funcionarioUsuarioId"
+                    >
+
+
+                    <p
+                        class="text-muted-theme"
+                    >
+
+                        Defina as permissões
+                        administrativas para
+
+                        <strong
+                            id="funcionarioUsuarioNome"
+                            class="text-main-theme"
+                        ></strong>.
+
+                    </p>
+
+
+                    <div
+                        class="form-check mb-2"
+                    >
+
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="funcVisualizarUsuarios"
+                        >
+
+                        <label
+                            class="form-check-label"
+                            for="funcVisualizarUsuarios"
+                        >
+                            Visualizar usuários
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        class="form-check mb-2"
+                    >
+
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="funcBloquearUsuarios"
+                        >
+
+                        <label
+                            class="form-check-label"
+                            for="funcBloquearUsuarios"
+                        >
+                            Bloquear usuários
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        class="form-check mb-2"
+                    >
+
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="funcVisualizarEventos"
+                        >
+
+                        <label
+                            class="form-check-label"
+                            for="funcVisualizarEventos"
+                        >
+                            Visualizar eventos
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        class="form-check mb-2"
+                    >
+
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="funcModerarEventos"
+                        >
+
+                        <label
+                            class="form-check-label"
+                            for="funcModerarEventos"
+                        >
+                            Moderar eventos
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        class="form-check mb-2"
+                    >
+
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="funcVisualizarPagamentos"
+                        >
+
+                        <label
+                            class="form-check-label"
+                            for="funcVisualizarPagamentos"
+                        >
+                            Visualizar pagamentos
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        class="form-check"
+                    >
+
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="funcGerenciarPlanos"
+                        >
+
+                        <label
+                            class="form-check-label"
+                            for="funcGerenciarPlanos"
+                        >
+                            Gerenciar planos
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="modal-footer"
+                >
+
+                    <button
+                        type="button"
+                        class="btn
+                               btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn
+                               btn-gradient"
+                        id="btnSalvarFuncionario"
+                    >
+
+                        <i
+                            class="bi bi-check-lg me-1"
+                        ></i>
+
+                        Confirmar
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ======================================================
+     MODAL REMOVER EVENTO
+======================================================= -->
+
+<div
+    class="modal fade"
+    id="modalRemoverEvento"
+    tabindex="-1"
+>
+
+    <div
+        class="modal-dialog
+               modal-dialog-centered"
+    >
+
+        <div
+            class="modal-content"
+        >
+
+            <div
+                class="modal-header"
+            >
+
+                <h5
+                    class="modal-title
+                           text-danger"
+                >
+                    Remover Evento
+                </h5>
+
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+
+            <form
+                id="formRemoverEvento"
+            >
+
+                <div
+                    class="modal-body"
+                >
+
+                    <input
+                        type="hidden"
+                        id="removerEventoId"
+                    >
+
+
+                    <div class="mb-3">
+
+                        <label
+                            class="form-label"
+                        >
+                            Evento
+                        </label>
+
+                        <input
+                            class="form-control"
+                            id="removerEventoTitulo"
+                            disabled
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label
+                            class="form-label"
+                        >
+                            Motivo da remoção
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="motivoRemocaoEvento"
+                            rows="4"
+                            required
+                            maxlength="500"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="modal-footer"
+                >
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger"
+                        id="btnConfirmarRemocaoEvento"
+                    >
+
+                        <i
+                            class="bi bi-trash me-1"
+                        ></i>
+
+                        Remover Evento
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ======================================================
+     MODAL PLANO
+======================================================= -->
+
+<div
+    class="modal fade"
+    id="modalPlano"
+    tabindex="-1"
+>
+
+    <div
+        class="modal-dialog
+               modal-dialog-centered"
+    >
+
+        <div
+            class="modal-content"
+        >
+
+            <div
+                class="modal-header"
+            >
+
+                <h5
+                    class="modal-title"
+                    id="tituloModalPlano"
+                >
+                    Novo Plano
+                </h5>
+
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+
+            <form
+                id="formPlano"
+            >
+
+                <div
+                    class="modal-body"
+                >
+
+                    <input
+                        type="hidden"
+                        id="planoId"
+                    >
+
+
+                    <div class="mb-3">
+
+                        <label
+                            class="form-label"
+                        >
+                            Nome
+                        </label>
+
+                        <input
+                            class="form-control"
+                            id="planoNome"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label
+                            class="form-label"
+                        >
+                            Tipo
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="planoTipo"
+                            required
+                        >
+
+                            <option
+                                value="HUB"
+                            >
+                                Hub
+                            </option>
+
+                            <option
+                                value="PUBLICACAO"
+                            >
+                                Publicação
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label
+                            class="form-label"
+                        >
+                            Duração em dias
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="planoDuracao"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label
+                            class="form-label"
+                        >
+                            Valor
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            class="form-control"
+                            id="planoValor"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="form-check"
+                    >
+
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="planoAtivo"
+                            checked
+                        >
+
+                        <label
+                            class="form-check-label"
+                            for="planoAtivo"
+                        >
+                            Plano ativo
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="modal-footer"
+                >
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-gradient"
+                        id="btnSalvarPlano"
+                    >
+                        Salvar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+></script>
+
+<script
+    src="js/auth.js"
+></script>
+
+<script
+    src="js/admin.js"
+></script>
+
+<script src="js/i18n.js"></script>
+</body>
+
+</html>

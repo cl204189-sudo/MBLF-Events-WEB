@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hub do Evento - MBLF Events</title>
+<link href="imagem/LOGO2.png" rel="icon" type="image/png"/>
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet"/>
+<!-- CSS -->
+<link href="css/style.css" rel="stylesheet"/>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<!-- ===================================================== -->
+<!-- NAVBAR -->
+<!-- ===================================================== -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-mblf shadow-sm py-2 sticky-top">
+<div class="container">
+<!-- LOGO -->
+<a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="painel.html">
+<img alt="MBLF Events" class="brand-logo" src="imagem/LOGO3.png"/>
+<span class="fs-4">
+                    MBLF Events
+                </span>
+</a>
+<!-- MOBILE -->
+<button aria-controls="navbarContent" aria-expanded="false" aria-label="Abrir menu" class="navbar-toggler" data-bs-target="#navbarContent" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarContent">
+<!-- NAVEGAÇÃO -->
+<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+<li class="nav-item">
+<a class="nav-link" href="painel.html">
+<i class="bi bi-grid-fill me-1"></i>
+
+                            Painel
+
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="explorar.html">
+<i class="bi bi-compass me-1"></i>
+
+                            Explorar Eventos
+
+                        </a>
+</li>
+</ul>
+<!-- PERFIL -->
+<div class="d-flex align-items-center gap-2">
+<!-- TEMA -->
+<button class="btn btn-outline-light btn-sm" onclick="alternarTema()" title="Alternar tema" aria-label="Alternar tema" type="button">
+<i class="bi bi-moon-stars-fill" id="icone-tema"></i>
+</button>
+<!-- IDIOMA -->
+<div class="dropdown">
+<button class="btn btn-outline-light btn-sm dropdown-toggle" id="dropdownIdiomaHub" data-bs-toggle="dropdown" aria-expanded="false" title="Selecionar idioma" aria-label="Selecionar idioma" type="button"><i class="bi bi-translate me-1"></i><img id="flag-idiomaAtualHub" src="https://flagcdn.com/24x18/br.png" width="24" height="18" alt="Português" style="object-fit:cover;vertical-align:middle;margin-right:.35rem;"><span id="idiomaAtualHub">PT</span></button>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownIdiomaHub">
+<li><button class="dropdown-item" type="button" onclick="selecionarIdioma('pt')">🇧🇷 Português</button></li>
+<li><button class="dropdown-item" type="button" onclick="selecionarIdioma('en')">🇺🇸 English</button></li>
+<li><button class="dropdown-item" type="button" onclick="selecionarIdioma('es')">🇪🇸 Español</button></li>
+</ul></div>
+<!-- USUÁRIO -->
+<div class="dropdown">
+<button aria-expanded="false" class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown" type="button">
+<i class="bi bi-person-circle fs-5"></i>
+<span class="d-none d-md-inline fw-semibold" id="nav-nome-usuario">
+
+                                Usuário
+
+                            </span>
+</button>
+<ul class="dropdown-menu dropdown-menu-end shadow-sm">
+<li>
+<h6 class="dropdown-header" id="nav-perfil-usuario">
+
+                                    Conta
+
+                                </h6>
+</li>
+<li>
+<a class="dropdown-item" href="painel.html">
+<i class="bi bi-grid me-2"></i>
+
+                                    Meu Painel
+
+                                </a>
+</li>
+<li>
+<hr class="dropdown-divider"/>
+</li>
+<li>
+<button class="dropdown-item text-danger" onclick="Auth.logout()" type="button">
+<i class="bi bi-box-arrow-right me-2"></i>
+
+                                    Sair
+
+                                </button>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- ===================================================== -->
+<!-- LOADING -->
+<!-- ===================================================== -->
+<section class="container py-5 text-center" id="loadingHub">
+<div class="spinner-border text-primary" role="status"></div>
+<p class="text-muted-theme mt-3 mb-0">
+
+            Carregando o Hub do evento...
+
+        </p>
+</section>
+<!-- ===================================================== -->
+<!-- ERRO -->
+<!-- ===================================================== -->
+<section class="container py-5 d-none" id="erroHub">
+<div class="alert alert-danger text-center">
+<i class="bi bi-exclamation-triangle-fill d-block mb-3" style="font-size: 2.7rem;"></i>
+<h4 class="fw-bold">
+
+                Não foi possível acessar o Hub
+
+            </h4>
+<p class="mb-3" id="mensagemErroHub">
+
+                Verifique se o Hub deste evento está ativo.
+
+            </p>
+<a class="btn btn-outline-danger" href="painel.html">
+<i class="bi bi-arrow-left me-1"></i>
+
+                Voltar ao Painel
+
+            </a>
+</div>
+</section>
+<!-- ===================================================== -->
+<!-- HUB -->
+<!-- ===================================================== -->
+<main class="d-none flex-grow-1" id="conteudoHub">
+<!-- ================================================= -->
+<!-- CABEÇALHO -->
+<!-- ================================================= -->
+<header class="border-bottom bg-card-theme py-4">
+<div class="container">
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-4">
+<div>
+<div class="d-flex flex-wrap gap-2 mb-2">
+<span class="badge bg-success" id="badgeHub">
+<i class="bi bi-check-circle me-1"></i>
+
+                                Hub Ativo
+
+                            </span>
+<span class="badge bg-primary" id="badgeFuncaoUsuario">
+
+                                Organizador
+
+                            </span>
+</div>
+<h2 class="fw-bold text-main-theme mb-1" id="hubTituloEvento">
+
+                            Evento
+
+                        </h2>
+<p class="text-muted-theme mb-0">
+
+                            Central de gerenciamento e colaboração
+                            do evento.
+
+                        </p>
+</div>
+<div>
+<div class="d-flex flex-wrap gap-2">
+<a class="btn btn-outline-primary d-none" href="#" id="btnRelatorioHub"><i class="bi bi-bar-chart-line me-1"></i> Ver relatórios</a>
+<a class="btn btn-outline-primary" href="#" id="linkDetalhesEvento">
+<i class="bi bi-eye me-1"></i>
+                            Ver Evento
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- ================================================= -->
+<!-- CONTEÚDO -->
+<!-- ================================================= -->
+<section class="container py-5">
+<div class="row g-4">
+<!-- ========================================= -->
+<!-- MENU LATERAL -->
+<!-- ========================================= -->
+<div class="col-12 col-lg-3">
+<div class="card card-custom border-0 shadow-sm p-3">
+<div class="nav nav-pills flex-column gap-2" id="hubTabs" role="tablist">
+<!-- VISÃO GERAL -->
+<button class="nav-link active text-start" data-bs-target="#painel-visao-geral" data-bs-toggle="pill" id="tab-visao-geral" role="tab" type="button">
+<i class="bi bi-speedometer2 me-2"></i>
+
+                                Visão Geral
+
+                            </button>
+<!-- COLABORADORES -->
+<button class="nav-link text-start" data-bs-target="#painel-colaboradores" data-bs-toggle="pill" id="tab-colaboradores" role="tab" type="button">
+<i class="bi bi-people-fill me-2"></i>
+
+                                Colaboradores
+
+                            </button>
+<!-- INSCRITOS -->
+<button class="nav-link text-start" data-bs-target="#painel-inscritos" data-bs-toggle="pill" id="tab-inscritos" role="tab" type="button">
+<i class="bi bi-person-check-fill me-2"></i>
+
+                                Inscritos
+
+                            </button>
+<!-- PRESENÇAS -->
+<button class="nav-link text-start" data-bs-target="#painel-presencas" data-bs-toggle="pill" id="tab-presencas" role="tab" type="button">
+<i class="bi bi-qr-code-scan me-2"></i>
+
+                                Presenças
+
+                            </button>
+<!-- FUTURO -->
+<hr/>
+<!-- AGENDA -->
+<button class="nav-link text-start" data-bs-target="#painel-agenda" data-bs-toggle="pill" id="tab-agenda" role="tab" type="button">
+<i class="bi bi-calendar-event me-2"></i>
+    Agenda
+</button>
+<button class="nav-link text-start" data-bs-target="#painel-tarefas" data-bs-toggle="pill" id="tab-tarefas" role="tab" type="button">
+<i class="bi bi-check2-square me-2"></i>
+    Tarefas
+</button>
+<button class="nav-link text-start" data-bs-target="#painel-chat" data-bs-toggle="pill" id="tab-chat" role="tab" type="button">
+<i class="bi bi-chat-dots me-2"></i>
+    Chat
+</button>
+<!-- CERTIFICADOS -->
+<button class="nav-link text-start" data-bs-target="#painel-certificados" data-bs-toggle="pill" id="tab-certificados" role="tab" type="button">
+<i class="bi bi-mortarboard me-2"></i>
+    Certificados
+</button>
+</div>
+</div>
+</div>
+<!-- ========================================= -->
+<!-- CONTEÚDO DAS ABAS -->
+<!-- ========================================= -->
+<div class="col-12 col-lg-9">
+<div class="tab-content" id="hubTabContent">
+<!-- ================================= -->
+<!-- VISÃO GERAL -->
+<!-- ================================= -->
+<div class="tab-pane fade show active" id="painel-visao-geral" role="tabpanel">
+<div class="row g-4">
+<!-- INSCRITOS -->
+<div class="col-12 col-md-4">
+<div class="card card-custom border-0 shadow-sm p-4 h-100">
+<div class="d-flex justify-content-between align-items-center">
+<div>
+<small class="text-muted-theme">
+                                                    Inscritos
+                                                </small>
+<h2 class="fw-bold text-main-theme mb-0" id="resumoInscritos">
+                                                    0
+                                                </h2>
+</div>
+<i class="bi bi-people-fill text-primary" style="font-size: 2rem;"></i>
+</div>
+</div>
+</div>
+<!-- PRESENÇAS -->
+<div class="col-12 col-md-4">
+<div class="card card-custom border-0 shadow-sm p-4 h-100">
+<div class="d-flex justify-content-between align-items-center">
+<div>
+<small class="text-muted-theme">
+                                                    Presenças
+                                                </small>
+<h2 class="fw-bold text-main-theme mb-0" id="resumoPresencas">
+                                                    0
+                                                </h2>
+</div>
+<i class="bi bi-check-circle-fill text-success" style="font-size: 2rem;"></i>
+</div>
+</div>
+</div>
+<!-- AGENDA -->
+
+<!-- COLABORADORES -->
+<div class="col-12 col-md-4">
+<div class="card card-custom border-0 shadow-sm p-4 h-100">
+<div class="d-flex justify-content-between align-items-center">
+<div>
+<small class="text-muted-theme">
+                                                    Colaboradores
+                                                </small>
+<h2 class="fw-bold text-main-theme mb-0" id="resumoColaboradores">
+                                                    0
+                                                </h2>
+</div>
+<i class="bi bi-person-workspace text-warning" style="font-size: 2rem;"></i>
+</div>
+</div>
+</div>
+<!-- INFORMAÇÕES DO HUB -->
+<div class="col-12">
+<div class="card card-custom border-0 shadow-sm p-4">
+<h5 class="fw-bold text-main-theme mb-3">
+<i class="bi bi-info-circle text-primary me-2"></i>
+
+                                            Informações do Hub
+
+                                        </h5>
+<div class="row g-3">
+<div class="col-12 col-md-6">
+<small class="text-muted-theme d-block">
+                                                    Hub válido até
+                                                </small>
+<strong class="text-main-theme" id="hubValidoAte">
+                                                    -
+                                                </strong>
+</div>
+<div class="col-12 col-md-6">
+<small class="text-muted-theme d-block">
+                                                    Sua função
+                                                </small>
+<strong class="text-main-theme" id="hubFuncaoUsuario">
+                                                    -
+                                                </strong>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ================================= -->
+<!-- COLABORADORES -->
+<!-- ================================= -->
+<div class="tab-pane fade" id="painel-colaboradores" role="tabpanel">
+<div class="card card-custom border-0 shadow-sm p-4">
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+<div>
+<h4 class="fw-bold text-main-theme mb-1">
+
+                                            Colaboradores
+
+                                        </h4>
+<p class="text-muted-theme mb-0">
+
+                                            Gerencie quem ajuda na organização
+                                            deste evento.
+
+                                        </p>
+</div>
+<button class="btn btn-mblf-primary" data-bs-target="#modalConvidarColaborador" data-bs-toggle="modal" id="btnAbrirConvite" type="button">
+<i class="bi bi-person-plus-fill me-1"></i>
+
+                                        Convidar Colaborador
+
+                                    </button>
+</div>
+<div class="alert d-none" id="alertColaboradores"></div>
+<div id="containerColaboradores">
+<div class="text-center py-5">
+<div class="spinner-border spinner-border-sm text-primary"></div>
+<span class="text-muted-theme ms-2">
+                                            Carregando colaboradores...
+                                        </span>
+</div>
+</div>
+</div>
+</div>
+<!-- ================================= -->
+<!-- INSCRITOS -->
+<!-- ================================= -->
+<div class="tab-pane fade" id="painel-inscritos" role="tabpanel">
+<div class="card card-custom border-0 shadow-sm p-4">
+<div class="mb-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+<div>
+<h4 class="fw-bold text-main-theme mb-1">
+                                        Participantes Inscritos
+                                    </h4>
+<p class="text-muted-theme mb-0">
+                                        Lista de participantes inscritos neste evento.
+                                    </p>
+</div>
+</div>
+<div class="alert d-none" id="alertInscritos"></div>
+<div class="table-responsive">
+<table class="table align-middle">
+<thead>
+<tr>
+<th>
+                                                    Participante
+                                                </th>
+<th>
+                                                    Data da inscrição
+                                                </th>
+<th>
+                                                    Status
+                                                </th>
+<th id="thAcoesParticipante">Ações</th>
+</tr>
+</thead>
+<tbody id="tabelaInscritos">
+<tr>
+<td class="text-center py-5" colspan="3">
+<div class="spinner-border spinner-border-sm text-primary"></div>
+<span class="text-muted-theme ms-2">
+                                                        Carregando inscritos...
+                                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- ================================= -->
+<!-- PRESENÇAS -->
+<!-- ================================= -->
+<div class="tab-pane fade" id="painel-presencas" role="tabpanel">
+<div class="row g-4">
+<!-- REGISTRAR -->
+<div class="col-12 col-lg-5" id="areaRegistrarPresenca">
+<div class="card card-custom border-0 shadow-sm p-4 h-100">
+<h4 class="fw-bold text-main-theme mb-1">
+
+                                            Registrar Presença
+
+                                        </h4>
+<p class="text-muted-theme small">
+                                            Leia o QR Code do participante com a câmera ou informe o token manualmente.
+                                        </p>
+<div class="d-flex gap-2 flex-wrap mb-3">
+    <button class="btn btn-outline-primary" id="btnAbrirLeitorQR" type="button"><i class="bi bi-camera me-1"></i> Abrir câmera</button>
+    <button class="btn btn-outline-secondary d-none" id="btnFecharLeitorQR" type="button"><i class="bi bi-camera-video-off me-1"></i> Fechar câmera</button>
+</div>
+<div id="areaLeitorQR" class="d-none mb-3"><div id="leitorQRCode" class="w-100"></div><small class="text-muted-theme d-block mt-2">Aponte a câmera para o QR Code da inscrição.</small></div>
+<div class="alert d-none" id="alertPresenca"></div>
+<form id="formRegistrarPresenca">
+<div class="mb-3">
+<label class="form-label fw-semibold" for="inputTokenPresenca">
+
+                                                    Token do QR Code
+
+                                                </label>
+<div class="input-group">
+<span class="input-group-text">
+<i class="bi bi-qr-code"></i>
+</span>
+<input autocomplete="off" class="form-control" id="inputTokenPresenca" placeholder="Cole ou digite o token" required="" type="text"/>
+</div>
+</div>
+<button class="btn btn-success w-100 fw-semibold py-2" id="btnRegistrarPresenca" type="submit">
+<i class="bi bi-check-circle-fill me-1"></i>
+
+                                                Confirmar Presença
+
+                                            </button>
+</form>
+</div>
+</div>
+<!-- LISTA -->
+<div class="col-12 col-lg-7">
+<div class="card card-custom border-0 shadow-sm p-4 h-100">
+<div class="d-flex justify-content-between align-items-center mb-3">
+<div>
+<h4 class="fw-bold text-main-theme mb-1">
+
+                                                    Presenças Confirmadas
+
+                                                </h4>
+<small class="text-muted-theme">
+
+                                                    Participantes que já
+                                                    realizaram check-in.
+
+                                                </small>
+</div>
+<button class="btn btn-outline-primary btn-sm" id="btnAtualizarPresencas" type="button">
+<i class="bi bi-arrow-clockwise"></i>
+</button>
+</div>
+<div id="containerPresencas">
+<div class="text-center py-5">
+<div class="spinner-border spinner-border-sm text-primary"></div>
+<span class="text-muted-theme ms-2">
+
+                                                    Carregando presenças...
+
+                                                </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-pane fade" id="painel-agenda" role="tabpanel">
+<div class="row g-4">
+<div class="col-12 col-lg-5" id="areaCriarAgenda">
+<div class="card card-custom border-0 shadow-sm p-4">
+<div class="mb-4">
+<h4 class="fw-bold text-main-theme mb-1">
+<i class="bi bi-calendar-plus text-primary me-2"></i>
+                        Novo item da Agenda
+                    </h4>
+<p class="text-muted-theme small mb-0">
+                        Adicione reuniões, atividades, lembretes e prazos da equipe.
+                    </p>
+</div>
+<div class="alert d-none" id="alertAgenda"></div>
+<form id="formAgenda">
+<div class="mb-3">
+<label class="form-label fw-semibold" for="inputAgendaTitulo">Título</label>
+<input class="form-control" id="inputAgendaTitulo" maxlength="200" placeholder="Ex.: Reunião com os monitores" required="" type="text"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-semibold" for="selectAgendaTipo">Tipo</label>
+<select class="form-select" id="selectAgendaTipo" required="">
+<option value="REUNIAO">Reunião</option>
+<option value="ATIVIDADE">Atividade</option>
+<option value="LEMBRETE">Lembrete</option>
+<option value="PRAZO">Prazo</option>
+<option value="OUTRO">Outro</option>
+</select>
+</div>
+<div class="mb-3">
+<label class="form-label fw-semibold" for="inputAgendaDescricao">Descrição</label>
+<textarea class="form-control" id="inputAgendaDescricao" placeholder="Informações adicionais..." rows="3"></textarea>
+</div>
+<div class="mb-3">
+<label class="form-label fw-semibold" for="inputAgendaInicio">Início</label>
+<input class="form-control" id="inputAgendaInicio" required="" type="datetime-local"/>
+</div>
+<div class="mb-4">
+<label class="form-label fw-semibold" for="inputAgendaFim">Fim</label>
+<input class="form-control" id="inputAgendaFim" type="datetime-local"/>
+<div class="form-text text-muted-theme">O horário de término é opcional.</div>
+</div>
+<button class="btn btn-mblf-primary w-100 fw-semibold" id="btnSalvarAgenda" type="submit">
+<i class="bi bi-plus-circle-fill me-1"></i>
+                        Adicionar à Agenda
+                    </button>
+</form>
+</div>
+</div>
+<div class="col-12 col-lg-7">
+<div class="card card-custom border-0 shadow-sm p-4">
+<div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
+<div>
+<h4 class="fw-bold text-main-theme mb-1">
+<i class="bi bi-calendar3 text-primary me-2"></i>
+                            Agenda da Equipe
+                        </h4>
+<p class="text-muted-theme small mb-0">
+                            Compromissos e atividades relacionados ao evento.
+                        </p>
+</div>
+<button class="btn btn-outline-primary btn-sm" id="btnAtualizarAgenda" title="Atualizar agenda" type="button">
+<i class="bi bi-arrow-clockwise"></i>
+</button>
+</div>
+<div id="containerAgenda">
+<div class="text-center py-5">
+<div class="spinner-border spinner-border-sm text-primary"></div>
+<span class="text-muted-theme ms-2">Carregando agenda...</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="tab-pane fade" id="painel-tarefas" role="tabpanel">
+<div class="row g-4">
+<div class="col-12 col-lg-5" id="areaCriarTarefa">
+<div class="card card-custom border-0 shadow-sm p-4">
+<div class="mb-4">
+<h4 class="fw-bold text-main-theme mb-1">
+<i class="bi bi-check2-square text-primary me-2"></i>
+                        Nova Tarefa
+                    </h4>
+<p class="text-muted-theme small mb-0">
+                        Organize atividades e responsáveis da equipe.
+                    </p>
+</div>
+<div class="alert d-none" id="alertTarefas"></div>
+<form id="formTarefa">
+<div class="mb-3">
+<label class="form-label fw-semibold" for="inputTarefaTitulo">Título</label>
+<input class="form-control" id="inputTarefaTitulo" maxlength="200" placeholder="Ex.: Organizar credenciamento" required="" type="text"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-semibold" for="inputTarefaDescricao">Descrição</label>
+<textarea class="form-control" id="inputTarefaDescricao" placeholder="Detalhes da tarefa..." rows="3"></textarea>
+</div>
+<div class="mb-3">
+<label class="form-label fw-semibold" for="selectTarefaPrioridade">Prioridade</label>
+<select class="form-select" id="selectTarefaPrioridade">
+<option value="BAIXA">Baixa</option>
+<option selected="" value="MEDIA">Média</option>
+<option value="ALTA">Alta</option>
+<option value="URGENTE">Urgente</option>
+</select>
+</div>
+<div class="mb-3">
+<label class="form-label fw-semibold" for="selectTarefaResponsavel">Responsável</label>
+<select class="form-select" id="selectTarefaResponsavel">
+<option value="">Sem responsável definido</option>
+</select>
+<div class="form-text text-muted-theme">
+                            O responsável deve fazer parte da equipe do evento.
+                        </div>
+</div>
+<div class="mb-4">
+<label class="form-label fw-semibold" for="inputTarefaPrazo">Prazo</label>
+<input class="form-control" id="inputTarefaPrazo" type="datetime-local"/>
+</div>
+<button class="btn btn-mblf-primary w-100 fw-semibold" id="btnSalvarTarefa" type="submit">
+<i class="bi bi-plus-circle-fill me-1"></i>
+                        Criar Tarefa
+                    </button>
+</form>
+</div>
+</div>
+<div class="col-12 col-lg-7">
+<div class="card card-custom border-0 shadow-sm p-4">
+<div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
+<div>
+<h4 class="fw-bold text-main-theme mb-1">
+<i class="bi bi-list-check text-primary me-2"></i>
+                            Tarefas da Equipe
+                        </h4>
+<p class="text-muted-theme small mb-0">
+                            Acompanhe pendências e atividades em andamento.
+                        </p>
+</div>
+<button class="btn btn-outline-primary btn-sm" id="btnAtualizarTarefas" title="Atualizar tarefas" type="button">
+<i class="bi bi-arrow-clockwise"></i>
+</button>
+</div>
+<div id="containerTarefas">
+<div class="text-center py-5">
+<div class="spinner-border spinner-border-sm text-primary"></div>
+<span class="text-muted-theme ms-2">Carregando tarefas...</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="tab-pane fade" id="painel-chat" role="tabpanel">
+<div class="card card-custom border-0 shadow-sm overflow-hidden">
+<div class="p-4 border-bottom">
+<div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
+<div>
+<h4 class="fw-bold text-main-theme mb-1">
+<i class="bi bi-chat-dots-fill text-primary me-2"></i>
+                        Chat da Equipe
+                    </h4>
+<p class="text-muted-theme small mb-0">
+                        Converse com organizadores e colaboradores do evento.
+                    </p>
+</div>
+<button class="btn btn-outline-primary btn-sm" id="btnAtualizarChat" title="Atualizar mensagens" type="button">
+<i class="bi bi-arrow-clockwise"></i>
+</button>
+</div>
+</div>
+<div class="alert d-none m-3 mb-0" id="alertChat"></div>
+<div class="p-4" id="containerMensagens" style="min-height: 320px; max-height: 520px; overflow-y: auto;">
+<div class="text-center py-5">
+<div class="spinner-border spinner-border-sm text-primary"></div>
+<span class="text-muted-theme ms-2">Carregando mensagens...</span>
+</div>
+</div>
+<div class="border-top p-3" id="areaEnviarMensagem">
+<form id="formChat">
+<div class="input-group">
+<input autocomplete="off" class="form-control" id="inputMensagemChat" maxlength="1000" placeholder="Digite uma mensagem para a equipe..." required="" type="text"/>
+<button class="btn btn-mblf-primary px-4" id="btnEnviarMensagem" type="submit">
+<i class="bi bi-send-fill me-1"></i>
+                        Enviar
+                    </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+<!-- ====================================================== -->
+<!-- CERTIFICADOS -->
+<!-- ====================================================== -->
+<div class="tab-pane fade" id="painel-certificados" role="tabpanel">
+<div class="card card-custom border-0 shadow-sm p-4">
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+<div>
+<h4 class="fw-bold text-main-theme mb-1">
+<i class="bi bi-mortarboard text-primary me-2"></i>
+                        Certificados
+                    </h4>
+<p class="text-muted-theme mb-0">
+                        Libere os certificados dos participantes que tiveram presença confirmada.
+                    </p>
+</div>
+<button class="btn btn-mblf-primary" id="btnLiberarCertificados" type="button">
+<i class="bi bi-award me-2"></i>
+                    Liberar certificados
+                </button>
+</div>
+
+<div class="alert d-none" id="alertCertificados"></div>
+
+<div class="border rounded p-3 mb-4" id="statusCertificados">
+<div class="d-flex align-items-center gap-3">
+<i class="bi bi-hourglass-split text-warning" style="font-size: 1.8rem;"></i>
+<div>
+<strong class="text-main-theme">
+                            Verificando disponibilidade...
+                        </strong>
+<div class="small text-muted-theme">
+                            Aguarde enquanto verificamos o evento.
+                        </div>
+</div>
+</div>
+</div>
+
+<div id="containerCertificados">
+<div class="text-center py-4">
+<div class="spinner-border spinner-border-sm text-primary"></div>
+<span class="text-muted-theme ms-2">
+                        Carregando certificados...
+                    </span>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+</main>
+<!-- ===================================================== -->
+<!-- MODAL: CONVIDAR COLABORADOR -->
+<!-- ===================================================== -->
+<div aria-hidden="true" class="modal fade" id="modalConvidarColaborador" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content card-custom">
+<div class="modal-header">
+<h5 class="modal-title fw-bold text-main-theme">
+<i class="bi bi-person-plus-fill text-primary me-2"></i>
+
+                        Convidar Colaborador
+
+                    </h5>
+<button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<form id="formConvidarColaborador">
+<div class="modal-body">
+<div class="alert d-none" id="alertConvite"></div>
+<div class="mb-3">
+<label class="form-label fw-semibold" for="inputEmailColaborador">
+
+                                E-mail do usuário
+
+                            </label>
+<input autocomplete="email" class="form-control" id="inputEmailColaborador" placeholder="Ex.: usuario@email.com" required="" type="email"/>
+<div class="form-text text-muted-theme">
+
+                                Informe o e-mail da pessoa que deseja
+                                convidar para colaborar neste evento.
+
+                            </div>
+</div>
+<div class="mb-3">
+<label class="form-label fw-semibold" for="inputFuncaoColaborador">
+
+                                Função
+
+                            </label>
+<input class="form-control" id="inputFuncaoColaborador" maxlength="100" placeholder="Ex.: Recepção, Monitor, Organização" type="text"/>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-outline-secondary" data-bs-dismiss="modal" type="button">
+
+                            Cancelar
+
+                        </button>
+<button class="btn btn-mblf-primary" id="btnEnviarConvite" type="submit">
+<i class="bi bi-send-fill me-1"></i>
+
+                            Enviar Convite
+
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- ===================================================== -->
+<!-- MODAL: PERMISSÕES DO COLABORADOR -->
+<!-- ===================================================== -->
+<div aria-hidden="true" class="modal fade" id="modalPermissoesColaborador" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content card-custom">
+<div class="modal-header">
+<div>
+<h5 class="modal-title fw-bold text-main-theme mb-0">
+
+                            Permissões do Colaborador
+
+                        </h5>
+<small class="text-muted-theme" id="nomeColaboradorPermissoes">
+                            Colaborador
+                        </small>
+</div>
+<button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<form id="formPermissoesColaborador">
+<div class="modal-body">
+<input id="permissaoUsuarioId" type="hidden"/>
+<div class="alert d-none" id="alertPermissoes"></div>
+<div class="row g-3">
+<div class="col-12 col-md-6">
+<div class="form-check form-switch">
+<input class="form-check-input" id="permPodeChat" type="checkbox"/>
+<label class="form-check-label" for="permPodeChat">
+
+                                        Acessar Chat
+
+                                    </label>
+</div>
+</div>
+<div class="col-12 col-md-6">
+<div class="form-check form-switch">
+<input class="form-check-input" id="permPodeCalendario" type="checkbox"/>
+<label class="form-check-label" for="permPodeCalendario">
+
+                                        Acessar Calendário
+
+                                    </label>
+</div>
+</div>
+<div class="col-12 col-md-6">
+<div class="form-check form-switch">
+<input class="form-check-input" id="permPodeTarefas" type="checkbox"/>
+<label class="form-check-label" for="permPodeTarefas">
+
+                                        Acessar Tarefas
+
+                                    </label>
+</div>
+</div>
+<div class="col-12 col-md-6">
+<div class="form-check form-switch">
+<input class="form-check-input" id="permPodeVerInscritos" type="checkbox"/>
+<label class="form-check-label" for="permPodeVerInscritos">
+
+                                        Ver Inscritos
+
+                                    </label>
+</div>
+</div>
+<div class="col-12 col-md-6">
+<div class="form-check form-switch">
+<input class="form-check-input" id="permPodeRegistrarPresencas" type="checkbox"/>
+<label class="form-check-label" for="permPodeRegistrarPresencas">
+
+                                        Registrar Presenças
+
+                                    </label>
+</div>
+</div>
+<div class="col-12 col-md-6">
+<div class="form-check form-switch">
+<input class="form-check-input" id="permPodeVerRelatorios" type="checkbox"/>
+<label class="form-check-label" for="permPodeVerRelatorios">
+
+                                        Ver Relatórios
+
+                                    </label>
+</div>
+</div>
+<div class="col-12 col-md-6">
+<div class="form-check form-switch">
+<input class="form-check-input" id="permPodeSilenciar" type="checkbox"/>
+<label class="form-check-label" for="permPodeSilenciar">
+
+                                        Silenciar Participantes
+
+                                    </label>
+</div>
+</div>
+<div class="col-12 col-md-6">
+<div class="form-check form-switch">
+<input class="form-check-input" id="permPodeExpulsar" type="checkbox"/>
+<label class="form-check-label" for="permPodeExpulsar">
+
+                                        Expulsar Participantes
+
+                                    </label>
+</div>
+</div>
+<div class="col-12">
+<div class="form-check form-switch">
+<input class="form-check-input" id="permPodeLiberarCertificados" type="checkbox"/>
+<label class="form-check-label" for="permPodeLiberarCertificados">
+
+                                        Liberar Certificados
+
+                                    </label>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-outline-secondary" data-bs-dismiss="modal" type="button">
+
+                            Cancelar
+
+                        </button>
+<button class="btn btn-mblf-primary" id="btnSalvarPermissoes" type="submit">
+<i class="bi bi-save me-1"></i>
+
+                            Salvar Permissões
+
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- ===================================================== -->
+<!-- FOOTER -->
+<!-- ===================================================== -->
+<footer class="mt-auto py-4 border-top footer-custom">
+<div class="container">
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+<div class="d-flex align-items-center gap-2">
+<img alt="MBLF Events" src="imagem/LOGO2.png" width="28"/>
+<strong class="text-main-theme">
+                        MBLF Events
+                    </strong>
+</div>
+<span class="small text-muted-theme">
+
+                    © 2026 MBLF Events
+
+                </span>
+</div>
+</div>
+</footer>
+<!-- ===================================================== -->
+<!-- SCRIPTS -->
+<!-- ===================================================== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/auth.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{const i=document.getElementById('idiomaAtualHub');const atualizar=()=>{if(i)i.textContent=({pt:'PT',en:'EN',es:'ES'})[window.I18n?.getIdioma?.()||'pt']||'PT'};atualizar();document.addEventListener('mblf:idiomaAlterado',atualizar);});</script>
+
+<script>
+/* Tradução complementar do Hub; o idioma principal é controlado por js/i18n.js. */
+(function () {
+  const dict = {
+    en: {
+      'Painel':'Dashboard','Explorar Eventos':'Explore Events','Visão Geral':'Overview','Visão geral':'Overview',
+      'Colaboradores':'Collaborators','Inscritos':'Attendees','Presenças':'Attendance',
+      'Agenda':'Schedule','Tarefas':'Tasks','Chat':'Chat','Certificados':'Certificates',
+      'Hub Ativo':'Hub Active','Organizador':'Organizer',
+      'Central de gerenciamento e colaboração do evento.':'Event management and collaboration center.',
+      'Ver relatórios':'View reports','Ver Evento':'View Event','Informações do Hub':'Hub Information',
+      'Hub válido até':'Hub valid until','Sua função':'Your role','Inscrições':'Registrations','Central de gerenciamento e colaboração do evento.':'Event management and collaboration center.','Painel do evento':'Event dashboard','Voltar ao Hub':'Back to Hub','Voltar para o Hub':'Back to Hub','Atualizar':'Refresh','Atualizar agenda':'Refresh schedule','Atualizar mensagens':'Refresh messages','Atualizar tarefas':'Refresh tasks','Atualizar presenças':'Refresh attendance','Presenças registradas':'Recorded attendance','Inscrições ativas':'Active registrations','Inscrições registradas':'Registered sign-ups','Cancelamentos':'Cancellations','Certificados liberados':'Certificates released','Ações de moderação':'Moderation actions','Informações do evento':'Event information','Nenhum colaborador encontrado':'No collaborators found','Nenhum inscrito encontrado':'No attendees found',
+      'Cancelar':'Cancel','Salvar Permissões':'Save Permissions',
+      'Expulsar Participantes':'Remove Participants','Liberar Certificados':'Release Certificates'
+    },
+    es: {
+      'Painel':'Panel','Explorar Eventos':'Explorar eventos','Visão Geral':'Resumen',
+      'Colaboradores':'Colaboradores','Inscritos':'Inscritos','Presenças':'Asistencias',
+      'Agenda':'Agenda','Tarefas':'Tareas','Chat':'Chat','Certificados':'Certificados',
+      'Hub Ativo':'Hub activo','Organizador':'Organizador',
+      'Central de gerenciamento e colaboração do evento.':'Centro de gestión y colaboración del evento.',
+      'Ver relatórios':'Ver informes','Ver Evento':'Ver evento','Informações do Hub':'Información del Hub',
+      'Hub válido até':'Hub válido hasta','Sua função':'Tu función','Inscrições':'Inscripciones','Visão geral':'Resumen','Central de gerenciamento e colaboração do evento.':'Centro de gestión y colaboración del evento.','Voltar ao Hub':'Volver al Hub','Voltar para o Hub':'Volver al Hub','Atualizar':'Actualizar','Atualizar agenda':'Actualizar agenda','Atualizar mensagens':'Actualizar mensajes','Atualizar tarefas':'Actualizar tareas','Atualizar presenças':'Actualizar asistencias','Presenças registradas':'Asistencias registradas','Inscrições ativas':'Inscripciones activas','Inscrições registradas':'Inscripciones registradas','Cancelamentos':'Cancelaciones','Certificados liberados':'Certificados emitidos','Ações de moderação':'Acciones de moderación','Informações do evento':'Información del evento','Nenhum colaborador encontrado':'No se encontraron colaboradores','Nenhum inscrito encontrado':'No se encontraron inscritos',
+      'Cancelar':'Cancelar','Salvar Permissões':'Guardar permisos',
+      'Expulsar Participantes':'Expulsar participantes','Liberar Certificados':'Liberar certificados'
+    }
+  };
+  const originals = new WeakMap();
+  function idioma() { return window.I18n?.getIdioma?.() || localStorage.getItem('mblfIdioma') || 'pt'; }
+  function aplicar() {
+    const l = idioma();
+    document.documentElement.lang = ({pt:'pt-BR',en:'en',es:'es'})[l] || 'pt-BR';
+    const map = dict[l] || {};
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        if (node.parentElement?.closest('script,style,.dropdown-menu,[data-i18n]')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    let node;
+    while ((node = walker.nextNode())) {
+      if (!originals.has(node)) originals.set(node, node.nodeValue);
+      const original = originals.get(node);
+      const trimmed = original.trim();
+      if (!trimmed) continue;
+      const translated = map[trimmed];
+      if (l === 'pt') node.nodeValue = original;
+      else if (translated) node.nodeValue = original.replace(trimmed, translated);
+    }
+  }
+  document.addEventListener('DOMContentLoaded', aplicar);
+  document.addEventListener('mblf:idiomaAlterado', aplicar);
+  window.addEventListener('storage', e => { if (e.key === 'mblfIdioma') aplicar(); });
+})();
+</script>
+
+<script src="js/hubEvento.js"></script>
+</body>
+</html>
